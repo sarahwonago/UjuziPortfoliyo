@@ -26,11 +26,11 @@
                     <li><a target="_blank" href="{% url 'userdashboard:user-dashboard' %}">DASHBOARD</a></li>
                     <li><a target="_blank" href="">PORTFOLIO</a></li>
                     
-                    <li><a href="">LOGOUT</a></li>
+                    <li><a href="{% url 'accounts:logout_user' %}">LOGOUT</a></li>
                   </ul>
                   {% else %}
                   <ul class="nav navbar-nav navbar-right">
-                    <li><a href="">LOGIN</a></li>
+                    <li><a href="{% url 'accounts:login_user' %}">LOGIN</a></li>
                   </ul>
                   {% endif %}
              </div>
