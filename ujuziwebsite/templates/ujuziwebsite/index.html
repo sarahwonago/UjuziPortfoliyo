@@ -13,8 +13,9 @@
                        <div class="home-info">
                             <h3>welcome to ujuziportfoliyo</h3>
                             <h1>Your Gateway to Creating A Professional Portfolio Effortlessly</h1>
-                        
+                             {% if not user.is_authenticated%}  
                             <button class="section-btn"><a href="">Get Started now</a></button>
+                            {% endif %}
                        </div>
                   </div>
 
