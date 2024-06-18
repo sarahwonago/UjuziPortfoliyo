@@ -1,0 +1,87 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+        <title>{% block title %}{% endblock title %} | UjuziPortfoliyo</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="developer" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- FAV AND ICONS   -->
+        <link rel="shortcut icon" href="">
+        <link rel="shortcut icon" href="">
+        <link rel="shortcut icon" sizes="72x72" href="">
+        <link rel="shortcut icon" sizes="114x114" href="">
+        
+        <!-- Google Font-->
+        <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'userportfoliyo/assets/icons/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'userportfoliyo/assets/plugins/css/bootstrap.min.css' %}">
+        <!-- Animate CSS-->
+        <link rel="stylesheet" href="{% static 'userportfoliyo/assets/plugins/css/animate.css' %}">
+        <!-- Owl Carousel CSS-->
+        <link rel="stylesheet" href="{% static 'userportfoliyo/assets/plugins/css/owl.css' %}">
+        <!-- Fancybox-->
+        <link rel="stylesheet" href="{% static 'userportfoliyo/assets/plugins/css/jquery.fancybox.min.css' %}">
+        <!-- Custom CSS-->
+        <link rel="stylesheet" href="{% static 'userportfoliyo/assets/css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'userportfoliyo/assets/css/responsive.css' %}">
+        
+        <!-- Colors -->
+        <link rel="alternate stylesheet" href="{% static 'userportfoliyo/assets/css/colors/blue.css' %}" title="blue">
+        <link rel="stylesheet" href="{% static 'userportfoliyo/assets/css/colors/defauld.css' %}" title="defauld">
+        <link rel="alternate stylesheet" href="{% static 'userportfoliyo/assets/css/colors/green.css' %}" title="green">
+        <link rel="alternate stylesheet" href="{% static 'userportfoliyo/assets/css/colors/blue-munsell.css' %}" title="blue-munsell">
+        <link rel="alternate stylesheet" href="{% static 'userportfoliyo/assets/css/colors/orange.css' %}" title="orange">
+        <link rel="alternate stylesheet" href="{% static 'userportfoliyo/assets/css/colors/purple.css' %}" title="purple">
+        <link rel="alternate stylesheet" href="{% static 'userportfoliyo/assets/css/colors/slate.css' %}" title="slate">
+        <link rel="alternate stylesheet" href="{% static 'userportfoliyo/assets/css/colors/yellow.css' %}" title="yellow">
+
+</head>
+
+<body class="white-vertion black-bg">
+
+        {% include 'userportfoliyo/navigations/nav.html' %}
+        
+        {% block content %} {% endblock content %}
+        
+        {% include 'userportfoliyo/navigations/footer.html' %}
+ 
+    
+    <!-- jQuery -->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/jquery.min.js' %}"></script>
+    <!-- popper -->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/popper.min.js' %}"></script>
+    <!-- bootstrap -->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/bootstrap.min.js' %}"></script>
+    <!-- owl carousel -->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/owl.carousel.js' %}"></script>
+    <!-- validator -->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/validator.min.js' %}"></script>
+    <!-- wow -->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/wow.min.js' %}"></script>
+    <!-- mixin js-->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/jquery.mixitup.min.js' %}"></script>
+    <!-- circle progress-->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/circle-progress.js' %}"></script>
+    <!-- jquery nav -->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/jquery.nav.js' %}"></script>
+    <!-- Fancybox js-->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/jquery.fancybox.min.js' %}"></script>
+    <!-- isotope js-->
+    <script src="{% static 'userportfoliyo/assets/plugins/js/isotope.pkgd.js' %}"></script>
+    <script src="{% static 'userportfoliyo/assets/plugins/js/packery-mode.pkgd.js' %}"></script>
+    <!-- Custom Scripts-->
+    <script src="{% static 'userportfoliyo/assets/js/map-init.js' %}"></script>
+    <script src="{% static 'userportfoliyo/assets/js/custom-scripts.js' %}"></script>
+    
+
+</body>
+
+</html>
