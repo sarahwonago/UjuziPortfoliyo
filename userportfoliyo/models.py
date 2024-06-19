@@ -20,7 +20,7 @@ class Profession(models.Model):
         verbose_name = "Profession"
 
     name = models.CharField(max_length=250, unique=True)
-    description = models.TextField(default="Provide a brief description of this profession...")
+    description = models.TextField()
 
     def __str__(self):
         return self.name
@@ -33,13 +33,12 @@ class Profile(models.Model):
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     about_me = models.TextField(blank=True, null=True)
-    video_intro = models.FileField(upload_to='video_intros/', null=True, blank=True)
     user_cv =models.FileField(null=True, blank=True)
     profilephoto = models.ImageField(upload_to="profilephoto/", default="profilephoto/profile.png")
     profession = models.ManyToManyField(Profession, related_name="profile_profession")
     bio = models.TextField()
     phone_number = models.CharField(max_length=250, null=True, blank=True)
-    location = models.CharField(max_length=250, null=True, blank=True)
+    country = models.CharField(max_length=250, null=True, blank=True)
     fb_link = models.URLField(null=True, blank=True)
     instagram_link = models.URLField(null=True, blank=True)
     x_link = models.URLField(null=True, blank=True)
@@ -80,7 +79,7 @@ class Project(models.Model):
         verbose_name_plural = "Projects"
         verbose_name = "Project"
 
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_project")
     name = models.CharField(max_length=250)
     image = models.ImageField(upload_to="project/")
     technology_used = models.ManyToManyField(Techonology)
@@ -95,7 +94,7 @@ class Blog(models.Model):
         verbose_name_plural = "Blogs"
         verbose_name = "Blog"
 
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_blog")
     title = models.CharField(max_length=250)
     image = models.ImageField(upload_to="blog/")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -110,7 +109,7 @@ class Comment(models.Model):
         verbose_name_plural = "Comment"
         verbose_name = "Comments"
 
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="blog_comment")
     comment_by = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -124,7 +123,7 @@ class Review(models.Model):
         verbose_name_plural = "Reviews"
         verbose_name = "Review"
 
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_review")
     reviewer_name = models.CharField(max_length=250)
     reviewer_role = models.CharField(max_length=250)
     reviewer_organization = models.CharField(max_length=250)
