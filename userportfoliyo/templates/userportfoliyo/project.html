@@ -1,0 +1,31 @@
+{% extends 'userportfoliyo/base.html'%}
+{% load static %}
+{% block content %}
+<section>
+
+    <div style="margin-top: 150px;" class="container">
+        <div class="row">
+            <div class="col-sm-5">
+                <h2>{{project.name}}</h2>
+                <p>{{project.description}}</p>       
+                   
+                <div class="mh-about-tag">
+                    <h6>Techonologies used:</h6>
+                    <ul>
+                        {% for technology in project.technology_used.all%}
+                        <li><span>{{technology.name}}</span></li>
+                        {%endfor%}
+                    </ul>
+                </div>
+                <a href="{%if project.demo_link%}{{project.demo_link}}{%endif%}" class="btn btn-fill">Live Demo</a>
+            </div>
+            <div class="col-sm-7">
+                <div class="mh-portfolio-modal-img">
+                    <img src="{{project.image.url}}" alt="" class="img-fluid">        
+                </div>
+            </div>
+        </div>
+    </div>          
+
+</section>
+{% endblock content %}

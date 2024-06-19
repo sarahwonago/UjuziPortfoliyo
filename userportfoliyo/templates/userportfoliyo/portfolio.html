@@ -1,0 +1,334 @@
+{% extends 'userportfoliyo/base.html'%}
+{% load static %}
+{% block title %}portfoliowebsite{% endblock title %}
+
+{% block content %}
+        <!--
+        ===================
+            HOME 
+        ===================
+        -->
+        <section class="mh-home" id="mh-home">
+            <div class="home-ovimg">
+                <div class="container">
+                    <div class="row xs-column-reverse section-separator vertical-middle-content home-padding">
+                        <div class="col-sm-6">
+                            <div class="mh-header-info">
+                                <div class="mh-promo">
+                                    <span>Hello, I am</span>
+                                </div>
+                                
+                                <h2>{% if user.first_name%}{{user.first_name | title}} {% else %} F_Name{% endif %} {% if user.last_name%}{{user.last_name | title}} {% else %} L_Name {% endif %}</h2>
+                                {% for profession in profile.profession.all%}
+                                <h4 class="" >{{profession.name}}</h4>
+                                {%empty%}
+                                <h4 class="" >My Profession Goes here</h4>
+                                {%endfor%}
+                                <p class="" >{% if profile.bio %}{{profile.bio}}{%else%} My bio goes here {%endif%}</p>
+                                
+                                <ul>
+                                    <li class="" data-wow-duration="0.8s" data-wow-delay="0.4s"><i class="fa fa-envelope"></i><a href="mailto:">{% if profile.user.email%}{{profile.user.email}}{% else%} test@gmail.com {% endif %}</a></li>
+                                    <li class="" data-wow-duration="0.8s" data-wow-delay="0.5s"><i class="fa fa-phone"></i><a href="callto:">{% if profile.phone_number%}{{profile.phone_number}}{% else%} +123456789{% endif %}</a></li>
+                                    <li class="" data-wow-duration="0.8s" data-wow-delay="0.6s"><i class="fa fa-map-marker"></i><address>{% if profile.location%}{{profile.location}}{% else%} La, Nairob,Kenya{% endif %}</address></li>
+                                </ul>
+                                
+                                <ul class="social-icon ">
+                                    <li><a href="{% if profile.fb_link %}{{profile.fb_link}} {% endif %}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="{% if profile.x_link %}{{profile.x_link}} {% endif %}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="{% if github.fb_link %}{{profile.github_link}} {% endif %}" target="_blank"><i class="fa fa-github"></i></a></li>
+                                    <li><a href="{% if linkedin.fb_link %}{{profile.linkedin_link}} {% endif %}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="{% if instagram.fb_link %}{{profile.instagram_link}} {% endif %}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="{% if instagram.fb_link %}{{profile.instagram_link}} {% endif %}" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="hero-img " data-wow-duration="0.8s" data-wow-delay="0.6s">
+                                <div class="img-border">
+                                    <img src="{{profile.profilephoto.url}}" alt=""  class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>   
+        
+        <!--
+        ==================
+            ABOUT
+        =================
+        -->
+        <section class="mh-about" id="mh-about">
+            <div class="container">
+                <div class="row section-separator">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="mh-about-img shadow-2 " data-wow-duration="0.8s" data-wow-delay="0.4s">
+                            <img src="{% static 'userportfoliyo/assets/images/ab-img.png' %}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="mh-about-inner">
+                            <h2 class="" data-wow-duration="0.8s" data-wow-delay="0.1s">About Me</h2>
+                            <p class="" data-wow-duration="0.8s" data-wow-delay="0.2s">{%if profile.about_me%}{{profile.about_me}}{% else %}Provide your about me, Hello, I’m a Patrick, web-developer based on Paris. 
+                            I have rich experience in web site design & building 
+                            and customization. Also I am good at. Lorem ipsum dolor sit amet consectetur adipisicing elit. In, quisquam totam? Sequi recusandae commodi ratione architecto dignissimos atque voluptate nesciunt, exercitationem a iste reiciendis sapiente sit? Placeat tempora eveniet nam!{%endif%}</p>
+                            <div class="mh-about-tag " >
+                                <h3>Techonologies:</h3>
+                                <ul>
+                                    {%for tech in technology %}
+                                    <li><span>{{tech.name}}</span></li>
+                                    {%empty%}
+                                    <li><span>Provide list of technologies you are good at</span></li>
+                                    {%endfor%}
+                                </ul>
+                            </div>
+                            <a href="" class="btn btn-fill " data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod My CV <i class="fa fa-download"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!--
+        ===================
+           SERVICE
+        ===================
+        -->
+        <section class="mh-service" id="mh-service">
+            <div class="container">
+                <div class="row section-separator">
+                    <div class="col-sm-12 text-center section-title " data-wow-duration="0.8s" data-wow-delay="0.2s">
+                        <h2>What I do</h2>
+                    </div>
+                    {% for prof in profile.profession.all%}
+                    <div class="col-sm-4">
+                        <div class="mh-service-item shadow-1 dark-bg " data-wow-duration="0.8s" data-wow-delay="0.5s">
+                            <i class="fa fa-code iron-color"></i>
+                            <h3>{{prof.name}}</h3>
+                            <p>
+                                {{prof.description}}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    {%empty%}
+                    <div class="col-sm-4">
+                        <div class="mh-service-item shadow-1 dark-bg " data-wow-duration="0.8s" data-wow-delay="0.5s">
+                            <i class="fa fa-code iron-color"></i>
+                            <h3>Web Development</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                                sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+                                magna aliquam erat volutpat.
+                            </p>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </section>       
+    
+        
+        <!--
+        ===================
+           EXPERIENCES
+        ===================
+        -->
+        <section class="mh-experince" id="mh-experience">
+            <div class="container">
+                <div class="row section-separator">
+                    <div class="col-sm-12 text-center section-title " data-wow-duration="0.8s" data-wow-delay="0.2s">
+                        <h2>Work Experience</h2>
+                    </div>
+                    {% for work in profile.profile_workexperience.all%}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="mh-work">
+                            <div class="mh-experience-deatils">
+                                
+                                <div class="mh-work-item dark-bg " data-wow-duration="0.8s" data-wow-delay="0.4s">
+                                    <h4>{{work.role}} | <a href="">{{work.organization}}</a></h4>
+                                    <div class="mh-eduyear">{{work.year}}</div>
+                                    <h6>Responsibility :</h6>
+                                    <p>
+                                        {{work.description}}
+                                    </p>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                    {%empty%}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="mh-work">
+                            <div class="mh-experience-deatils">
+                                <div class="mh-work-item dark-bg " data-wow-duration="0.8s" data-wow-delay="0.4s">
+                                    <h4>Role Played <a href="">Organization Name</a></h4>
+                                    <div class="mh-eduyear">Year: 2005-2008</div>
+                                    <h6>Responsibility :</h6>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam, earum.</p>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </section>   
+  
+        <!--
+        ===================
+           PROJECTS
+        ===================
+        -->
+        <section class="mh-portfolio" id="mh-portfolio">
+            <div class="container">
+                <div class="row section-separator">
+                    <div class="section-title col-sm-12 ">
+                        <h3>Recent Projects</h3>
+                    </div>
+                    
+                    <div class="part col-sm-12">
+              
+                        <div class="mh-project-gallery col-sm-12 " id="project-gallery" >
+                            <div class="portfolioContainer row">
+                                {% for project in projects %}
+                                <div class="grid-item col-md-4 col-sm-6 col-xs-12">
+                                    <figure>
+                                        <img src="{{project.image.url}}" alt="img04">
+                                        <figcaption class="fig-caption">
+                                            <i class="fa fa-search"></i>
+                                            <h5 class="title">{{project.name}}</h5>
+                                            <span class="sub-title">By:{{user.username}}</span>
+                                            <a href="{% url 'userportfoliyo:project_detail' project.id %}"></a>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                {% empty %}
+                                <p>Projects in Development stage...</p>
+                                {%endfor%}
+                            </div> 
+                        </div>
+                    </div> 
+                    
+                </div> 
+            </div>
+
+        </section>
+        
+        <!--
+        ===================
+           BLOG
+        ===================
+        -->
+        <section class="mh-blog" id="mh-blog">
+            <div class="container">
+                <div class="row section-separator">
+                    <div class="col-sm-12 section-title " data-wow-duration="0.8s" data-wow-delay="0.2s">
+                        <h3>Recent Posts</h3>
+                    </div>
+                    {% for blog in blogs %}
+                    <div class="col-sm-12 col-md-4">
+                         <div class="mh-blog-item dark-bg " >
+                            <img src="{{blog.image.url}}" alt="" class="img-fluid">
+                            <div class="blog-inner">
+                                <h2><a href="">{{blog.title}}</a></h2>
+                                <div class="mh-blog-post-info">
+                                    <ul>
+                                        <li><strong>Post On</strong><a href="">{{blog.created_at}}</a></li>
+                                        <li><strong>By</strong><a href="">{{user.username|title}}</a></li>
+                                    </ul>
+                                </div>
+                                <p>{{blog.body}}</p>
+                                <a href="{% url 'userportfoliyo:blog_detail' blog.pk %}">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No recent blogs..</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>        
+        
+        <!--
+        ===================
+           TESTIMONIALS
+        ===================
+        -->
+        <section class="mh-testimonial" id="mh-testimonial">
+            <div class="home-v-img">
+                <div class="container">
+                    <div class="row section-separator">
+                        <div class="col-sm-12 section-title " data-wow-duration="0.8s" data-wow-delay="0.2s">
+                            <h3>Client Reviews</h3>
+                            <p>This is what people i've worked with say about me and my work...</p>
+                        </div>
+                        
+                        <div class="col-sm-12 " id="mh-client-review" >
+                            {% for review in profile.review_set.all %}
+                            <div class="each-client-item">
+                                <div class="mh-client-item dark-bg black-shadow-1">
+                                    <p>{{review.review}}</p>
+                                    <h4>{{review.reviewer_name}}</h4>
+                                    <span>{{review.reviewer_role}}, {{review.reviewer_organization}}</span>
+                                </div>
+                            </div>
+                            {%empty%}
+                            <p>Add reviews to your profile...</p>
+                            {%endfor%}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!--
+        ===================
+           CONTACT
+        ===================
+        -->
+        <section class="mh-footer" id="mh-contact">
+            <div class="map-image image-bg">
+                <div class="container">
+                    <div class="row section-separator">
+                        <div class="col-sm-12 section-title " data-wow-duration="0.8s" data-wow-delay="0.2s">
+                            <h3>Get in Touch</h3>
+                        </div>
+             
+                        <div class="col-sm-12 col-md-6 " >
+                            <p>Now that you know about me, you can reach out for any freelancing opportunities , contract work or just to say hi !</p>
+                            <form id="contactForm" class="single-form quate-form " data-toggle="validator">
+                                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <input name="name" class="contact-name form-control" id="name" type="text" placeholder="UserName" required>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <input name="name" class="contact-email form-control" id="L_name" type="text" placeholder="Subject" required>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <input name="name" class="contact-subject form-control" id="email" type="email" placeholder="Email" required>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <textarea class="contact-message" id="message" rows="6" placeholder="Message" required></textarea>
+                                    </div>
+                                    <!-- Subject Button -->
+                                    <div class="btn-form col-sm-12">
+                                        <button type="submit" class="btn btn-fill btn-block" id="form-submit">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-12 col-md-6 " data-wow-duration="0.8s" data-wow-delay="0.5s">
+                            <div>
+                                <div class="mh-about-img shadow-2 " data-wow-duration="0.8s" data-wow-delay="0.4s">
+                                    <img src="{% static 'userportfoliyo/assets/images/ab-img.png' %}" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>     
+{% endblock content %}

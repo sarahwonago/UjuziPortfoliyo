@@ -1,0 +1,90 @@
+{%extends 'userportfoliyo/base.html'%}
+{%load static%}
+{% block content %}
+        <section class="mh-home image-bg home-2-img" id="mh-home">
+            <div class="img-foverlay img-color-overlay">
+                <div class="container">
+                    <div class="row section-separator">
+                        <div class="mh-page-title text-center col-sm-12">
+                            <h2>Blog</h2>
+                            <p>It is a long established fact that a reader will be <br>
+                            distracted by the readable content of a page when looking at its layout.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mh-blog">
+            <div class="container">
+                <div class="row section-separator">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="mh-blog-item dark-bg blog-single">
+                                    
+                                    <div class="blog-inner">
+                                        <h2><a href="">{{blog.title}}</a></h2>
+                                        <div class="mh-blog-post-info">
+                                            <ul>
+                                                <li><strong>Post On</strong><a href="">{{blog.created_at}}</a></li>
+                                                <li><strong>By</strong><a href="">{{user.username}}</a></li>
+                                            </ul>
+                                        </div>
+                                        <p>
+                                           {{blog.body}}
+                                        </p>                                                                              
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comments-->
+                            <div class="col-sm-12">
+                               
+                                <div class="comments col-sm-12">
+                                    <h2>Comments</h2>
+                                    <div class="single-comment media">
+                                        {%for comment in blog.comment_set.all%}
+                                        <div class="col-md-10 col-sm-10 comment-details media-body">
+                                            <h4> {{comment.comment_by}} </h4>
+                                            <span>{{comment.updated_at}}</span>
+                                            <p>{{comment.comment}}</p>
+                                        </div>
+                                        {%empty%}
+                                        <p>No comments..</p>
+                                        {%endfor%}
+                                    </div>
+                                    
+                                </div>
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- SIDEBAR -->
+                    <div class="col-md-4">
+                        <div class="mh-blog-sidebar">
+                            <div class="blog-form-inner col-sm-12">
+                                <div class="post-comment-title">
+                                    <h3>Comment on Blog</h3>
+                                </div>
+                                <form id="contact-form" class="single-form comment-form wow fadeIn" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+                                    <div class="row">
+                                        
+                                        <div class="btn-form col-sm-12">
+                                            <button class="btn btn-fill">submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> 
+                    
+                </div>
+            </div>
+        </section>       
+  
+{%endblock content%}
+        
