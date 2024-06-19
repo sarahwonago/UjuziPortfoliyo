@@ -4,15 +4,17 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="text-left text-xs-center">
-                        <p><a href="">UjuziPortfoliyo</a></p>
+                        <p>&copy; <span id="copyright-year"></span> {{user.first_name}} {{user.last_name}}
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <ul class="social-icon">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-github"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    <ul class="social-icon ">
+                        <li><a href="{% if profile.fb_link %}{{profile.fb_link}} {% endif %}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{% if profile.x_link %}{{profile.x_link}} {% endif %}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="{% if github.fb_link %}{{profile.github_link}} {% endif %}" target="_blank"><i class="fa fa-github"></i></a></li>
+                        <li><a href="{% if linkedin.fb_link %}{{profile.linkedin_link}} {% endif %}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="{% if instagram.fb_link %}{{profile.instagram_link}} {% endif %}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                
                     </ul>
                 </div>
             </div>

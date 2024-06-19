@@ -13,6 +13,17 @@ class Techonology(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Profession(models.Model):
+    class Meta:
+        verbose_name_plural = "Profession"
+        verbose_name = "Profession"
+
+    name = models.CharField(max_length=250, unique=True)
+    description = models.TextField(default="Provide a brief description of this profession...")
+
+    def __str__(self):
+        return self.name
 
 class Profile(models.Model):
 
@@ -25,7 +36,7 @@ class Profile(models.Model):
     video_intro = models.FileField(upload_to='video_intros/', null=True, blank=True)
     user_cv =models.FileField(null=True, blank=True)
     profilephoto = models.ImageField(upload_to="profilephoto/", default="profilephoto/profile.png")
-    profession = models.CharField(max_length=250)
+    profession = models.ManyToManyField(Profession, related_name="profile_profession")
     bio = models.TextField()
     phone_number = models.CharField(max_length=250, null=True, blank=True)
     location = models.CharField(max_length=250, null=True, blank=True)
@@ -34,7 +45,7 @@ class Profile(models.Model):
     x_link = models.URLField(null=True, blank=True)
     github_link = models.URLField(null=True, blank=True)
     linkedin_link = models.URLField(null=True, blank=True)
-    techonology = models.ManyToManyField(Techonology)
+    techonology = models.ManyToManyField(Techonology, related_name="profile_technology")
 
     def __str__(self):
         return f'{self.user.username}'
@@ -47,3 +58,77 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+class WorkExperience(models.Model):
+
+    class Meta:
+        verbose_name_plural = "WorkExperience"
+        verbose_name = "WorkExperience"
+
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_workexperience")
+    role = models.CharField(max_length=250)
+    organization = models.CharField(max_length=250)
+    year = models.DateField()
+    description = models.TextField()
+
+    def __str__(self):
+        return self.organization
+    
+class Project(models.Model):
+
+    class Meta:
+        verbose_name_plural = "Projects"
+        verbose_name = "Project"
+
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    name = models.CharField(max_length=250)
+    image = models.ImageField(upload_to="project/")
+    technology_used = models.ManyToManyField(Techonology)
+    description = models.TextField()
+    demo_link = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+    
+class Blog(models.Model):
+    class Meta:
+        verbose_name_plural = "Blogs"
+        verbose_name = "Blog"
+
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    title = models.CharField(max_length=250)
+    image = models.ImageField(upload_to="blog/")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    body = models.TextField()
+
+    def __str__(self):
+        return self.title
+    
+class Comment(models.Model):
+    class Meta:
+        verbose_name_plural = "Comment"
+        verbose_name = "Comments"
+
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    comment_by = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    comment = models.TextField()
+
+    def __str__(self):
+        return self.comment_by
+    
+class Review(models.Model):
+    class Meta:
+        verbose_name_plural = "Reviews"
+        verbose_name = "Review"
+
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    reviewer_name = models.CharField(max_length=250)
+    reviewer_role = models.CharField(max_length=250)
+    reviewer_organization = models.CharField(max_length=250)
+    review = models.TextField()
+
+    def __str__(self):
+        return self.review[:20]

@@ -9,10 +9,34 @@ from .models import *
 @login_required
 def portfolio_view(request):
     profile = get_object_or_404(Profile, user=request.user)
+    techonology = Techonology.objects.filter(profile_technology=profile)
+    projects = Project.objects.filter(profile=profile)
+    blogs = Blog.objects.filter(profile=profile)
     context = {
         "profile":profile,
+        "technology":techonology,
+        "projects":projects,
+        "blogs":blogs,
     }
     return render(request, "userportfoliyo/portfolio.html", context)
+
+@login_required
+def project_detail_view(request, pk):
+    project = get_object_or_404(Project, id=pk)
+    
+    context = {
+        "project":project,
+    }
+    return render(request, "userportfoliyo/project.html", context)
+
+@login_required
+def blog_detail_view(request, pk):
+    blog = get_object_or_404(Blog, id=pk)
+    
+    context = {
+        "blog":blog,
+    }
+    return render(request, "userportfoliyo/blog_detail.html", context)
 
 # @login_required
 # def generate_pdf(request):
