@@ -5,6 +5,14 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ["first_name","last_name","email","about_me", "profilephoto", "phone_number","country"]
+        widgets = {
+            "email": forms.EmailInput(attrs={"placeholder":"Enter Email"}),
+            "first_name": forms.TextInput(attrs={"placeholder":"Enter First Name"}),
+            "last_name": forms.TextInput(attrs={"placeholder":"Enter Last Name"}),
+            "about_me": forms.Textarea(attrs={"placeholder":"A brief about you.."}),
+            "phone_number": forms.TextInput(attrs={"placeholder":"Enter Phone Number"}),
+            "country": forms.TextInput(attrs={"placeholder":"Kenya/Nairobi"}),
+        }
         
 class SocialsForm(forms.ModelForm):
     class Meta:
@@ -20,6 +28,9 @@ class WorkExperienceForm(forms.ModelForm):
     class Meta:
         model = WorkExperience
         fields = ["role","organization","year","description" ]
+        widgets = {
+            "year": forms.DateInput(attrs={"type":"Date","placeholder":"2024-03-04"}),
+        }
 
 class ProfessionForm(forms.ModelForm):
     class Meta:

@@ -22,13 +22,13 @@ class Profile(models.Model):
         verbose_name = "Profile"
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(blank=True, null=True, max_length=250)
-    last_name = models.CharField(blank=True, null=True, max_length=250)
-    email = models.CharField(blank=True, null=True,max_length=200)
-    about_me = models.TextField(blank=True, null=True)
-    profilephoto = models.ImageField(upload_to="profilephoto/", default="profilephoto/profile.png")
-    phone_number = models.CharField(max_length=250, null=True, blank=True)
-    country = models.CharField(max_length=250, null=True, blank=True)
+    first_name = models.CharField("First Name",blank=True, null=True, max_length=250)
+    last_name = models.CharField("Last Name",blank=True, null=True, max_length=250)
+    email = models.CharField("Email", blank=True, null=True,max_length=200)
+    about_me = models.TextField("About",blank=True, null=True)
+    profilephoto = models.ImageField("ProfilePicture",upload_to="profilephoto/", default="profilephoto/profile.png")
+    phone_number = models.CharField("Phone Number",max_length=250, null=True, blank=True)
+    country = models.CharField("Country/City",max_length=250, null=True, blank=True)
 
     def __str__(self):
         return f'{self.user.username}'
@@ -39,6 +39,7 @@ class Profile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):

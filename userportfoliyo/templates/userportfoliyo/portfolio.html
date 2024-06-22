@@ -17,14 +17,13 @@
                                 <div class="mh-promo">
                                     <span>Hello, I am</span>
                                 </div>
-                                
-                                <h2>{% if user.first_name%}{{user.first_name | title}} {% else %} F_Name{% endif %} {% if user.last_name%}{{user.last_name | title}} {% else %} L_Name {% endif %}</h2>
-                                {% for profession in profile.profession.all%}
-                                <h4 class="" >{{profession.name}}</h4>
+                                <h2>{% if profile.first_name%}{{profile.first_name | title}} {% else %} F_Name{% endif %} {% if profile.last_name%}{{profile.last_name | title}} {% else %} L_Name {% endif %}</h2>
+                                {% for my_profession in profession%}
+                                <h4 class="" >{{my_profession.name}}</h4>
                                 {%empty%}
-                                <h4 class="" >update profession</h4>
+                                <h4 class="" >Populate profession</h4>
                                 {%endfor%}
-                                <p class="" >{% if profile.bio %}{{profile.bio}}{%else%} update bio {%endif%}</p>
+                                <p class="" >{% if professional_profile.bio %}{{professional_profile.bio}}{%else%} Populate bio {%endif%}</p>
                                 
                                 <ul>
                                     <li class="" data-wow-duration="0.8s" data-wow-delay="0.4s"><i class="fa fa-envelope"></i><a href="mailto:">{% if profile.user.email%}{{profile.user.email}}{% else%} add email {% endif %}</a></li>
@@ -74,12 +73,9 @@
                             <div class="mh-about-tag " >
                                 <h3>Tech-stack:</h3>
                                 <ul>
-                                    {%for tech in technology %}
+                                    {%for tech in professional_profile.techonology.all %}
                                     <li><span>{{tech.name}}</span></li>
                                     {%empty%}
-                                    <li><span>lorem</span></li>
-                                    <li><span>lorem</span></li>
-                                    <li><span>lorem</span></li>
                                     <li><span>lorem</span></li>
                                     <li><span>lorem</span></li>
                                     <li><span>lorem</span></li>
@@ -105,7 +101,7 @@
                     <div class="col-sm-12 text-center section-title " data-wow-duration="0.8s" data-wow-delay="0.2s">
                         <h2>Professional Expertise</h2>
                     </div>
-                    {% for prof in profile.profession.all%}
+                    {% for prof in profession%}
                     <div class="col-sm-4">
                         <div class="mh-service-item shadow-1 dark-bg " data-wow-duration="0.8s" data-wow-delay="0.5s">
                             <i class="fa fa-code iron-color"></i>
@@ -410,7 +406,7 @@
                         </div>
                         
                         <div class="col-sm-12 " id="mh-client-review" >
-                            {% for review in profile.review_set.all %}
+                            {% for review in reviews %}
                             <div class="each-client-item">
                                 <div class="mh-client-item dark-bg black-shadow-1">
                                     <p>{{review.review}}</p>
@@ -418,6 +414,7 @@
                                     <span>{{review.reviewer_role}}, {{review.reviewer_organization}}</span>
                                 </div>
                             </div>
+
                             {%empty%}
                             <div class="each-client-item">
                                 <div class="mh-client-item dark-bg black-shadow-1">

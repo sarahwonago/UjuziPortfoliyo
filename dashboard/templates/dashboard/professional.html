@@ -1,11 +1,12 @@
 {%extends 'dashboard/base.html'%}
 {%block content%}
 <section>
-    <h2>Edit Proffesional info</h2>
+    <h2>Populate Proffesional info</h2>
     <form action="" method="post">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Save</button>
+        <button><a href="{% url 'dashboard:dashboard' %}">Cancel</a></button>
     </form>
 </section>
 {% endblock content%}

@@ -5,7 +5,8 @@
     <form action="" method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Save</button>
+        <button type="submit">Add</button>
+        <button><a href="{% url 'dashboard:profession-view' %}">Cancel</a></button>
     </form>
 </section>
 {% endblock content%}

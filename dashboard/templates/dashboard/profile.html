@@ -1,8 +1,8 @@
 {%extends 'dashboard/base.html'%}
 {%block content%}
 <section>
-    <h2>Edit Profile</h2>
-    <form action="" method="post">
+    <h2>Edit User Profile Info</h2>
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Save</button>

@@ -1,6 +1,43 @@
 {%extends 'dashboard/base.html'%}
 {%block content%}
 <section>
-    <h2>Reviews</h2>
+   <h2>Reviews</h2>
+   <table>
+    <thead>
+        <tr>
+            <th>Reviewer</th>
+            <th>Role</th>
+            <th>Organization</th>
+            <th>Review</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+      {%for review in review_list%}
+        <tr>
+            <td>{{review.reviewer_name}}</td>
+            <td>{{review.reviewer_role}}</td>
+            <td>{{review.reviewer_organization}}</td>
+            <td>{{review.review|truncatewords:10}}</td>
+            <td>
+                <a href="{% url 'dashboard:review-edit' review.id %}"><button>Edit</button></a>
+                <a href="{% url 'dashboard:review-delete' review.id %}"><button>Delete</button></a>
+            </td>
+        </tr>
+      {%empty%}
+      <tr>
+         <td>Populate Reviews</td>
+         <td>Populate Reviews</td>
+         <td>Populate Reviews</td>
+         <td>Populate Reviews</td>
+         <td>
+             <a href=""><button>Edit</button></a>
+             <a href=""><button>Delete</button></a>
+         </td>
+     </tr>
+      {% endfor %}
+    </tbody>
+</table>
+  
 </section>
 {% endblock content%}

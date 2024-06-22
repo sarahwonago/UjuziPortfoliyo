@@ -1,7 +1,43 @@
 {%extends 'dashboard/base.html'%}
 {%block content%}
 <section>
-    <h2>Blogs</h2>
+   <h2>Blogs</h2>
+   <table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created_At</th>
+            <th>Updated_At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+      {%for blog in blog_list%}
+        <tr>
+            <td>{{blog.title}}</td>
+            <td>{{blog.description|truncatewords:10}}</td>
+            <td>{{blog.created_at|timesince}}</td>
+            <td>{{blog.updated_at|timesince}}</td>
+            <td>
+                <a href="{% url 'dashboard:blog-edit' blog.id %}"><button>Edit</button></a>
+                <a href="{% url 'dashboard:blog-delete' blog.id %}"><button>Delete</button></a>
+            </td>
+        </tr>
+      {%empty%}
+      <tr>
+         <td>Populate Blogs</td>
+         <td>Populate Blogs</td>
+         <td>Populate Blogs</td>
+         <td>Populate Blogs</td>
+         <td>
+             <a href=""><button>Edit</button></a>
+             <a href=""><button>Delete</button></a>
+         </td>
+     </tr>
+      {% endfor %}
+    </tbody>
+</table>
   
 </section>
 {% endblock content%}

@@ -1,6 +1,40 @@
 {%extends 'dashboard/base.html'%}
 {%block content%}
 <section>
-    <h2>View Projects</h2>
+   <h2>Projects</h2>
+   <table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Demo Link</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+      {%for project in project_list%}
+        <tr>
+            <td>{{project.name}}</td>
+            <td>{{project.description|truncatewords:10}}</td>
+            <td>{{project.demo_link}}</td>
+            <td>
+                <a href="{% url 'dashboard:project-edit' project.id %}"><button>Edit</button></a>
+                <a href="{% url 'dashboard:project-delete' project.id %}"><button>Delete</button></a>
+            </td>
+        </tr>
+      {%empty%}
+      <tr>
+         <td>Populate Projects</td>
+         <td>Populate Projects</td>
+         <td>Populate Projects</td>
+         <td>
+             <a href=""><button>Edit</button></a>
+             <a href=""><button>Delete</button></a>
+         </td>
+     </tr>
+      {% endfor %}
+    </tbody>
+</table>
+  
 </section>
 {% endblock content%}

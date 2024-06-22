@@ -2,5 +2,36 @@
 {%block content%}
 <section>
    <h2>View profesion</h2>
+   <table>
+    <thead>
+        <tr>
+            <th>Profession</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+      {%for profession in profession_list%}
+        <tr>
+            <td>{{profession.name}}</td>
+            <td>{{profession.description|truncatewords:10}}</td>
+            <td>
+                <a href="{% url 'dashboard:profession-edit' profession.id %}"><button>Edit</button></a>
+                <a href="{% url 'dashboard:profession-delete' profession.id %}"><button>Delete</button></a>
+            </td>
+        </tr>
+      {%empty%}
+      <tr>
+         <td>Populate profession</td>
+         <td>Populate profession</td>
+         <td>
+             <a href=""><button>Edit</button></a>
+             <a href=""><button>Delete</button></a>
+         </td>
+     </tr>
+      {% endfor %}
+    </tbody>
+</table>
+  
 </section>
 {% endblock content%}
