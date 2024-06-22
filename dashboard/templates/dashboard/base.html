@@ -9,10 +9,51 @@
 
     <nav>
         <ul>
-            <li><a href="">Dashboard</a></li>
-            <li><a href="">Profile Management</a></li>
-            <li><a href="">Blog Management</a></li>
-            <li><a href="">Project Management</a></li>
+            <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+            </li>
+            <li><a href="">Profile Management</a>
+                <ul>
+                    <li><a href="{% url 'dashboard:profile-edit' %}">Edit profile info</a></li>
+                    <li><a href="{% url 'dashboard:professional-info-edit' %}">Edit Professional info</a></li>
+                    <li><a href="{% url 'dashboard:socials-edit' %}">Edit socials</a></li>
+                </ul>
+            </li>
+            <li><a href="">Work Experience</a>
+                <ul>
+                    <li><a href="{% url 'dashboard:work-add' %}">Add Work Experience</a></li>
+                    <li><a href="{% url 'dashboard:work-view' %}">View Work Experience</a></li>
+                </ul>
+            </li>
+            <li><a href="">Professional Expertise</a>
+                <ul>
+                    <li><a href="{% url 'dashboard:profession-add' %}">Add Profession</a></li>
+                    <li><a href="{% url 'dashboard:profession-view' %}">View Profession</a></li>
+                </ul>
+            </li>
+            <li><a href="">Project Management</a>
+                <ul>
+                    <li><a href="{% url 'dashboard:project-add' %}">Add Project</a></li>
+                </ul>
+                <ul>
+                    <li><a href="{% url 'dashboard:project-view' %}">View Projects</a></li>
+                </ul>
+            </li>
+            <li><a href="">Blog Management</a>
+                <ul>
+                    <li><a href="{% url 'dashboard:blog-add' %}">Add Blog</a></li>
+                </ul>
+                <ul>
+                    <li><a href="{% url 'dashboard:blog-view' %}">View blogs</a></li>
+                </ul>
+            </li>
+            <li><a href="">Review Management</a>
+                <ul>
+                    <li><a href="{% url 'dashboard:review-add' %}">Add Review</a></li>
+                </ul>
+                <ul>
+                    <li><a href="{% url 'dashboard:review-view' %}">View Reviews</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
     {%block content%}

@@ -14,16 +14,6 @@ class Techonology(models.Model):
     def __str__(self):
         return self.name
     
-class Profession(models.Model):
-    class Meta:
-        verbose_name_plural = "Profession"
-        verbose_name = "Profession"
-
-    name = models.CharField(max_length=250, unique=True)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.name
 
 class Profile(models.Model):
 
@@ -32,22 +22,18 @@ class Profile(models.Model):
         verbose_name = "Profile"
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(blank=True, null=True, max_length=250)
+    last_name = models.CharField(blank=True, null=True, max_length=250)
+    email = models.CharField(blank=True, null=True,max_length=200)
     about_me = models.TextField(blank=True, null=True)
-    user_cv =models.FileField(null=True, blank=True)
     profilephoto = models.ImageField(upload_to="profilephoto/", default="profilephoto/profile.png")
-    profession = models.ManyToManyField(Profession, related_name="profile_profession")
-    bio = models.TextField()
     phone_number = models.CharField(max_length=250, null=True, blank=True)
     country = models.CharField(max_length=250, null=True, blank=True)
-    fb_link = models.URLField(null=True, blank=True)
-    instagram_link = models.URLField(null=True, blank=True)
-    x_link = models.URLField(null=True, blank=True)
-    github_link = models.URLField(null=True, blank=True)
-    linkedin_link = models.URLField(null=True, blank=True)
-    techonology = models.ManyToManyField(Techonology, related_name="profile_technology")
 
     def __str__(self):
         return f'{self.user.username}'
+    
+
     
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -57,6 +43,44 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+class Profession(models.Model):
+    class Meta:
+        verbose_name_plural = "Profession"
+        verbose_name = "Profession"
+
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profession_profile", blank=True, null=True)
+    name = models.CharField(max_length=250, unique=True)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+class Socials(models.Model):
+
+    class Meta:
+        verbose_name_plural = "Socials"
+        verbose_name = "Socials"
+
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_socials")
+    fb_link = models.URLField(null=True, blank=True)
+    instagram_link = models.URLField(null=True, blank=True)
+    x_link = models.URLField(null=True, blank=True)
+    github_link = models.URLField(null=True, blank=True)
+    linkedin_link = models.URLField(null=True, blank=True)
+
+
+class ProfessionalProfile(models.Model):
+
+    class Meta:
+        verbose_name_plural = "ProfessionalProfile"
+        verbose_name = "ProfessionalProfile"
+
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="professional_profile")
+    user_cv =models.FileField(null=True, blank=True)
+    bio = models.TextField()
+    techonology = models.ManyToManyField(Techonology, related_name="professional_technology")
+ 
 
 class WorkExperience(models.Model):
 
@@ -88,6 +112,7 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+    
     
 class Blog(models.Model):
     class Meta:

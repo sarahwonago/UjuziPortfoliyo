@@ -9,12 +9,11 @@ from .models import *
 @login_required
 def portfolio_view(request):
     profile = get_object_or_404(Profile, user=request.user)
-    techonology = Techonology.objects.filter(profile_technology=profile)
+    
     projects = Project.objects.filter(profile=profile)
     blogs = Blog.objects.filter(profile=profile)
     context = {
         "profile":profile,
-        "technology":techonology,
         "projects":projects,
         "blogs":blogs,
     }
