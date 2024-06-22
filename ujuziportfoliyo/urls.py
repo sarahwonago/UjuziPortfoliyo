@@ -9,8 +9,8 @@ urlpatterns = [
 
     #Custom
     path("userportfolio/", include('userportfoliyo.urls')),
-    path("dashboard/", include('userdashboard.urls')),
     path("accounts/", include('accounts.urls')),
+    path("dashboard/", include('dashboard.urls')),
     path("", include('ujuziwebsite.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

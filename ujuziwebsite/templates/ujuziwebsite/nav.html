@@ -23,7 +23,7 @@
                   {% if user.is_authenticated %}
     
                   <ul class="nav navbar-nav navbar-right">
-                    <li><a target="_blank" href="{% url 'userdashboard:user-dashboard' %}">DASHBOARD</a></li>
+                    <li><a target="_blank" href="{% url 'dashboard:dashboard' %}">DASHBOARD</a></li>
                     <li><a target="_blank" href="{% url 'userportfoliyo:portfolio'%}">PORTFOLIO</a></li>
                     
                     <li><a href="{% url 'accounts:logout_user' %}">LOGOUT</a></li>
