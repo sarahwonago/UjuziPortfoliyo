@@ -1,0 +1,21 @@
+{% extends 'ujuziwebsite/base.html'%}
+{% load static %}
+{% block title %}Login {% endblock title %}
+
+{% block content %}
+<section id="home" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		 <div>
+
+			<form action="" method="post">
+				{% csrf_token %}
+				{{form.as_p}}
+				<button type="submit">LOGIN</button>
+			</form>
+		   </div>
+
+		 </div>
+	</div>
+</section>
+{%endblock content%}
