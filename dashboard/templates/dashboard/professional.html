@@ -1,0 +1,11 @@
+{%extends 'dashboard/base.html'%}
+{%block content%}
+<section>
+    <h2>Edit Proffesional info</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Save</button>
+    </form>
+</section>
+{% endblock content%}
