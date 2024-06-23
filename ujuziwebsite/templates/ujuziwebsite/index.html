@@ -137,8 +137,17 @@
                             <div class="section-title">
                                  <h1>What Our Clients Say</h1>
                             </div>
-
                             <div class="owl-carousel owl-theme">
+                              {%for review in reviews%}
+                              <div class="item">
+                                   
+                                   <h3>{{review.review}}</h3>
+                                   <div class="testimonial-item">
+                                        <img src="{{review.user.profilephoto.url}}" class="img-responsive" alt="Michael">
+                                        <h4>{{review.user.username}}</h4>
+                                   </div>
+                              </div>
+                              {%empty%}
                                  <div class="item">
                                       <h3>Vestibulum tempor facilisis efficitur. Sed nec nisi sit amet nibh pellentesque elementum. In viverra ipsum ornare sapien rhoncus ullamcorper.</h3>
                                       <div class="testimonial-item">
@@ -146,6 +155,7 @@
                                            <h4>Michael</h4>
                                       </div>
                                  </div>
+                              {%endfor%}
                             </div>
 
                        </div>

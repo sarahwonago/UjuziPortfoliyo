@@ -18,6 +18,30 @@ class Techonology(models.Model):
     def __str__(self):
         return self.name
     
+class Organization(models.Model):
+    class Meta:
+        verbose_name_plural = "Organization"
+        verbose_name = "Organization"
+
+    name = models.CharField("Organization",max_length=250, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+    
+class TechRole(models.Model):
+    class Meta:
+        verbose_name_plural = "TechRole"
+        verbose_name = "TechRoles"
+
+    name = models.CharField("Tech-Role",max_length=250, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+    
 class Profile(models.Model):
 
     class Meta:
@@ -52,7 +76,7 @@ class Profession(models.Model):
         verbose_name = "Profession"
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profession_profile")
-    name = models.CharField(max_length=250, unique=True)
+    name = models.ForeignKey(TechRole, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
@@ -69,8 +93,8 @@ class WorkExperience(models.Model):
         verbose_name = "WorkExperience"
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_workexperience")
-    role = models.CharField(max_length=250)
-    organization = models.CharField(max_length=250)
+    role = models.ForeignKey(TechRole, on_delete=models.CASCADE)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     year = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -134,11 +158,24 @@ class Review(models.Model):
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_review")
     reviewer_name = models.CharField(max_length=250)
-    reviewer_role = models.CharField(max_length=250)
-    reviewer_organization = models.CharField(max_length=250)
+    reviewer_role =models.ForeignKey(TechRole, on_delete=models.CASCADE)
+    reviewer_organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     review = models.TextField()
 
     def __str__(self):
         return self.reviewer_name
+    
+class ServiceReview(models.Model):
+    class Meta:
+        verbose_name_plural = "ServiceReview"
+        verbose_name = "ServiceReview"
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    #rate= models.IntegerField()
+    review = models.TextField()
+
+    def __str__(self):
+        return self.user.username

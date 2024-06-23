@@ -45,4 +45,9 @@ class TechnologyForm(forms.ModelForm):
     class Meta:
         model=Techonology
         fields=["name"]
-        
+
+class ServiceReviewForm(forms.ModelForm):
+ 
+    class Meta:
+        model=ServiceReview
+        fields=["review"]     
