@@ -348,3 +348,18 @@ def delete_tech_view(request, pk):
     }
     return render(request, "dashboard/delete_tech.html", context)
 
+def service_review_view(request):
+    if request.method == 'POST':
+        form = ServiceReviewForm(request.POST)
+        if form.is_valid():
+            service=form.save(commit=False)
+            service.user= request.user
+            service.save()
+            return redirect("dashboard:dashboard")
+    else:
+        form = ServiceReviewForm()
+    context = {
+        "form":form,
+    }
+ 
+    return render(request, "dashboard/service_review.html", context)

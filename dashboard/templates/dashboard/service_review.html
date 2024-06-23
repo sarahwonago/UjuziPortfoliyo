@@ -1,13 +1,12 @@
 {%extends 'dashboard/base.html'%}
-{% load crispy_forms_tags%}
 {%block content%}
 <section>
-    <h2>Add Blog</h2>
-    <form action="" method="post" enctype="multipart/form-data">
+    <h2>Review Our Service</h2>
+    <form action="" method="post">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Save</button>
-        <button><a href="{% url 'dashboard:blog-view' %}">Cancel</a></button>
+        <button><a href="{% url 'dashboard:dashboard' %}">Cancel</a></button>
     </form>
 </section>
 {% endblock content%}
