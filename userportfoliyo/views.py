@@ -12,7 +12,6 @@ def portfolio_view(request):
     profession = Profession.objects.filter(profile=profile)
     projects = Project.objects.filter(profile=profile)
     blogs = Blog.objects.filter(profile=profile)
-    tech_stack = Techonology.objects.filter(profile=profile)
     reviews = Review.objects.filter(profile=profile)
     context = {
         "profile":profile,
@@ -20,7 +19,6 @@ def portfolio_view(request):
         "blogs":blogs,
         "profession":profession,
         "reviews":reviews,
-        "tech_stack":tech_stack,
     }
     return render(request, "userportfoliyo/portfolio.html", context)
 

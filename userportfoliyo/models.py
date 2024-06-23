@@ -1,10 +1,22 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 
+User =get_user_model()
 
+class Techonology(models.Model):
+    class Meta:
+        verbose_name_plural = "Technologies"
+        verbose_name = "Technology"
+
+    name = models.CharField("Tech-Stack",max_length=250, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
     
 class Profile(models.Model):
 
@@ -13,20 +25,10 @@ class Profile(models.Model):
         verbose_name = "Profile"
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField("First Name",blank=True, null=True, max_length=250)
-    last_name = models.CharField("Last Name",blank=True, null=True, max_length=250)
-    email = models.CharField("Email", blank=True, null=True,max_length=200)
     about_me = models.TextField("About",blank=True, null=True)
-    profilephoto = models.ImageField("ProfilePicture",upload_to="profilephoto/", default="profilephoto/profile.png")
-    phone_number = models.CharField("Phone Number",max_length=250, null=True, blank=True)
-    country = models.CharField("Country/City",max_length=250, null=True, blank=True)
     user_cv =models.FileField(null=True, blank=True)
     bio = models.TextField()
-    fb_link = models.URLField(null=True, blank=True)
-    instagram_link = models.URLField(null=True, blank=True)
-    x_link = models.URLField(null=True, blank=True)
-    github_link = models.URLField(null=True, blank=True)
-    linkedin_link = models.URLField(null=True, blank=True)
+    tech_stack = models.ManyToManyField(Techonology)
 
     def __str__(self):
         return f'{self.user.username}'
@@ -43,18 +45,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
-class Techonology(models.Model):
-    class Meta:
-        verbose_name_plural = "Technologies"
-        verbose_name = "Technology"
-
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    name = models.CharField("Tech-Stack",max_length=250, unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name
     
 class Profession(models.Model):
     class Meta:
@@ -69,6 +59,7 @@ class Profession(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 class WorkExperience(models.Model):

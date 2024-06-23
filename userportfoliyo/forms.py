@@ -1,18 +1,12 @@
 from django import forms
+from datetime import datetime
 from .models import *
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["first_name","last_name","email","bio","about_me", "profilephoto", "phone_number","country", "fb_link", "instagram_link", "x_link", "github_link", "linkedin_link","user_cv"]
-        widgets = {
-            "email": forms.EmailInput(attrs={"placeholder":"Enter Email"}),
-            "first_name": forms.TextInput(attrs={"placeholder":"Enter First Name"}),
-            "last_name": forms.TextInput(attrs={"placeholder":"Enter Last Name"}),
-            "about_me": forms.Textarea(attrs={"placeholder":"A brief about you.."}),
-            "phone_number": forms.TextInput(attrs={"placeholder":"Enter Phone Number"}),
-            "country": forms.TextInput(attrs={"placeholder":"Kenya/Nairobi"}),
-        }
+        fields = ["bio","about_me","tech_stack","user_cv"]
+     
         
 
 class WorkExperienceForm(forms.ModelForm):
@@ -20,7 +14,7 @@ class WorkExperienceForm(forms.ModelForm):
         model = WorkExperience
         fields = ["role","organization","year","description" ]
         widgets = {
-            "year": forms.DateInput(attrs={"type":"Date","placeholder":"2024-03-04"}),
+            "year": forms.DateInput(attrs={"type":"date","placeholder":"2024-03-04", "max":datetime.now().date()}),
         }
 
 class ProfessionForm(forms.ModelForm):
@@ -47,6 +41,8 @@ class ReviewForm(forms.ModelForm):
         fields = ["reviewer_name","reviewer_role", "reviewer_organization","review"]
      
 class TechnologyForm(forms.ModelForm):
+ 
     class Meta:
         model=Techonology
         fields=["name"]
+        

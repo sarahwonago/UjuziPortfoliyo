@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from userportfoliyo.forms import *
+from accounts.forms import UserModForm
 
 def dashboard(request):
     return render(request, "dashboard/dashboard.html")
@@ -19,6 +20,20 @@ def profile_view(request):
         "form":form,
     }
     return render(request, "dashboard/profile.html", context)
+
+def personal_edit_view(request):
+    if request.method == 'POST':
+        form = UserModForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard:dashboard")
+    else:
+        form = UserModForm(instance=request.user)
+
+    context = {
+        "form":form,
+    }
+    return render(request, "dashboard/personal_edit.html", context)
 
 
 def add_work_view(request):
@@ -130,6 +145,7 @@ def add_project_view(request):
             project=form.save(commit=False)
             project.profile= request.user.profile
             project.save()
+            form.save_m2m()
             return redirect("dashboard:project-view")
     else:
         form = ProjectForm()

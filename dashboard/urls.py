@@ -27,6 +27,7 @@ urlpatterns=[
     path("view_work_experience/", view_work_view, name="work-view"),
     path("edit_work_experience/<int:pk>/", edit_work_view, name="work-edit"),
     path("delete_work/<int:pk>/",delete_work_view, name="work-delete"),
+    path("personal_info_edit/", personal_edit_view, name="personal-edit"),
     path("profile_edit/", profile_view, name="profile-edit"),
     path("", dashboard, name="dashboard"),
 ]

@@ -17,7 +17,7 @@
                                 <div class="mh-promo">
                                     <span>Hello, I am</span>
                                 </div>
-                                <h2>{% if profile.first_name%}{{profile.first_name | title}} {% else %} F_Name{% endif %} {% if profile.last_name%}{{profile.last_name | title}} {% else %} L_Name {% endif %}</h2>
+                                <h2>{% if user.first_name%}{{user.first_name | title}} {% else %} F_Name{% endif %} {% if user.last_name%}{{user.last_name | title}} {% else %} L_Name {% endif %}</h2>
                                 {% for my_profession in profession%}
                                 <h4 class="" >{{my_profession.name}}</h4>
                                 {%empty%}
@@ -26,25 +26,25 @@
                                 <p class="" >{% if profile.bio %}{{profile.bio}}{%else%} Populate bio {%endif%}</p>
                                 
                                 <ul>
-                                    <li class="" data-wow-duration="0.8s" data-wow-delay="0.4s"><i class="fa fa-envelope"></i><a href="mailto:">{% if profile.user.email%}{{profile.user.email}}{% else%} add email {% endif %}</a></li>
-                                    <li class="" data-wow-duration="0.8s" data-wow-delay="0.5s"><i class="fa fa-phone"></i><a href="callto:">{% if profile.phone_number%}{{profile.phone_number}}{% else%} add phone{% endif %}</a></li>
-                                    <li class="" data-wow-duration="0.8s" data-wow-delay="0.6s"><i class="fa fa-map-marker"></i><address>{% if profile.country%}{{profile.country}}{% else%} add country {% endif %}</address></li>
+                                    <li class="" data-wow-duration="0.8s" data-wow-delay="0.4s"><i class="fa fa-envelope"></i><a href="mailto:">{% if user.email%}{{user.email}}{% else%} add email {% endif %}</a></li>
+                                    <li class="" data-wow-duration="0.8s" data-wow-delay="0.5s"><i class="fa fa-phone"></i><a href="callto:">{% if user.phone_number%}{{user.phone_number}}{% else%} add phone{% endif %}</a></li>
+                                    <li class="" data-wow-duration="0.8s" data-wow-delay="0.6s"><i class="fa fa-map-marker"></i><address>{% if user.country%}{{user.country}}{% else%} add country {% endif %}</address></li>
                                 </ul>
                                 
                                 <ul class="social-icon ">
-                                    <li><a href="{% if profile.fb_link %}{{profile.fb_link}} {% endif %}" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="{% if profile.x_link %}{{profile.x_link}} {% endif %}" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="{% if github.fb_link %}{{profile.github_link}} {% endif %}" target="_blank"><i class="fa fa-github"></i></a></li>
-                                    <li><a href="{% if linkedin.fb_link %}{{profile.linkedin_link}} {% endif %}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="{% if instagram.fb_link %}{{profile.instagram_link}} {% endif %}" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="{% if instagram.fb_link %}{{profile.instagram_link}} {% endif %}" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+                                    <li><a href="{% if user.fb_link %}{{user.fb_link}} {% endif %}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="{% if user.x_link %}{{user.x_link}} {% endif %}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="{% if user.github_link %}{{user.github_link}} {% endif %}" target="_blank"><i class="fa fa-github"></i></a></li>
+                                    <li><a href="{% if user.fb_link %}{{user.linkedin_link}} {% endif %}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="{% if user.instagram_link %}{{user.instagram_link}} {% endif %}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                    
                                 </ul>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="hero-img " data-wow-duration="0.8s" data-wow-delay="0.6s">
                                 <div class="img-border">
-                                    <img src="{{profile.profilephoto.url}}" alt=""  class="img-fluid">
+                                    <img src="{{user.profilephoto.url}}" alt=""  class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -55,6 +55,7 @@
         
         <!--
         ==================
+
             ABOUT
         =================
         -->
@@ -73,7 +74,7 @@
                             <div class="mh-about-tag " >
                                 <h3>Tech-stack:</h3>
                                 <ul>
-                                    {%for tech in tech_stack %}
+                                    {%for tech in profile.tech_stack.all %}
                                     <li><span>{{tech.name}}</span></li>
                                     {%empty%}
                                     <li><span>lorem</span></li>

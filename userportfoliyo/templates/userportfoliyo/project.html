@@ -14,6 +14,8 @@
                     <ul>
                         {% for technology in project.technology_used.all%}
                         <li><span>{{technology.name}}</span></li>
+                        {%empty%}
+                        <p>Specify tech stack for the project</p>
                         {%endfor%}
                     </ul>
                 </div>
