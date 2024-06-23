@@ -4,7 +4,7 @@ from .models import *
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["first_name","last_name","email","about_me", "profilephoto", "phone_number","country"]
+        fields = ["first_name","last_name","email","bio","about_me", "profilephoto", "phone_number","country", "fb_link", "instagram_link", "x_link", "github_link", "linkedin_link","user_cv"]
         widgets = {
             "email": forms.EmailInput(attrs={"placeholder":"Enter Email"}),
             "first_name": forms.TextInput(attrs={"placeholder":"Enter First Name"}),
@@ -14,15 +14,6 @@ class ProfileForm(forms.ModelForm):
             "country": forms.TextInput(attrs={"placeholder":"Kenya/Nairobi"}),
         }
         
-class SocialsForm(forms.ModelForm):
-    class Meta:
-        model = Socials
-        fields = ["fb_link", "instagram_link", "x_link", "github_link", "linkedin_link"]
-
-class ProfessionalProfileForm(forms.ModelForm):
-    class Meta:
-        model = ProfessionalProfile
-        fields = ["bio","techonology","user_cv" ]
 
 class WorkExperienceForm(forms.ModelForm):
     class Meta:
@@ -55,3 +46,7 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ["reviewer_name","reviewer_role", "reviewer_organization","review"]
      
+class TechnologyForm(forms.ModelForm):
+    class Meta:
+        model=Techonology
+        fields=["name"]

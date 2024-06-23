@@ -23,7 +23,7 @@
                                 {%empty%}
                                 <h4 class="" >Populate profession</h4>
                                 {%endfor%}
-                                <p class="" >{% if professional_profile.bio %}{{professional_profile.bio}}{%else%} Populate bio {%endif%}</p>
+                                <p class="" >{% if profile.bio %}{{profile.bio}}{%else%} Populate bio {%endif%}</p>
                                 
                                 <ul>
                                     <li class="" data-wow-duration="0.8s" data-wow-delay="0.4s"><i class="fa fa-envelope"></i><a href="mailto:">{% if profile.user.email%}{{profile.user.email}}{% else%} add email {% endif %}</a></li>
@@ -73,7 +73,7 @@
                             <div class="mh-about-tag " >
                                 <h3>Tech-stack:</h3>
                                 <ul>
-                                    {%for tech in professional_profile.techonology.all %}
+                                    {%for tech in tech_stack %}
                                     <li><span>{{tech.name}}</span></li>
                                     {%empty%}
                                     <li><span>lorem</span></li>

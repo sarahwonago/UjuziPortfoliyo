@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <div class="bannerSection">
+          <div class="container">
+            <div class="row g-4 g-md-3  align-items-center">
+              <div class="col-md-auto order-md-last">
+                <div class="bannerUserImg">
+                  <p>Profile Photo</p>
+                  {% if profile.profilephoto %}
+                  <img src="{{profile.profilephoto.url}}" alt="userprofile">
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="bannerContent">
+                  {% if profile.profession and profile.bio %}
+                  <h1 class="xlTitle pb-3">Hi, I’m {{profile.user.username|title}}, <br> a {{profile.profession}} </br></h1>
+                  <p>{{profile.bio}}</p>
+                  {% else %}
+                  <p>Populate your profile to generate the resume</p>
+                  {% endif %}
+                  <div class="bannerBtnCol">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <div>
+      <h2>Personal Information:</h2>
+        <ul>
+          <li>Full name</li>
+          <li>Contact Info:
+            <ul>
+              <li>Phone</li>
+              <li>Email Address</li>
+              <li>Mailing Address</li>
+            </ul>
+          </li>
+        </ul>
+
+      <h2>Summary</h2>
+        <p>A brief summary highlighting key skills, experiences, and career objectives.</p>
+
+      <h2>Education</h2>
+        <p>Degrees Earned (e.g., Bachelor's, Master's, Ph.D.)
+          Institution Name
+          Major/Field of Study
+          Graduation Date (or expected graduation date)
+          Academic Achievements or Honors (e.g., GPA, scholarships, awards)
+        </p>
+
+      <h2>Work Experience:</h2>
+
+       <p>   Job Title
+        Company/Organization Name
+        Location (City, State/Country)
+        Dates of Employment (start and end dates)
+        Description of Responsibilities and Achievements
+        Skills:
+      </p>
+          
+        <h2>Technical Skills</h2>
+           <p>(e.g., programming languages, software tools)</p>
+
+        <h2>  Soft Skills </h2>
+        <p>(e.g., communication, leadership, problem-solving)</p>
+          Language Proficiency (if applicable)
+        <h2>Certifications and Licenses:</h2>
+          
+          Certification Name
+          Issuing Organization
+          Date Earned (or expiration date)
+          Professional Memberships:
+          
+          <h2>Membership Organization</h2>
+          Position or Role (if applicable)
+          Dates of Membership
+          Projects or Research (if applicable):
+          
+          <h2>Title of Project/Research</h2>
+          Description
+          Role or Contribution
+          Date (if applicable)
+          Publications (if applicable):
+          
+         <h2> Title of Publication</h2>
+          Author(s)
+          Publication Date
+          Journal or Publisher
+          Volunteer Experience or Extracurricular Activities (optional):
+          
+          <h2>Organization Name</h2>
+          <p>          Role or Position
+            Dates of Involvement
+            Description of Activities or Achievements
+            References:</p>
+          
+          <h2>Name of Reference</h2>
+          <p>Job Title
+            Company/Organization
+            Contact Information (Phone Number, Email Address)</p>
+    </div>
+</body>
+</html>

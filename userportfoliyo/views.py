@@ -9,18 +9,18 @@ from .models import *
 @login_required
 def portfolio_view(request):
     profile = get_object_or_404(Profile, user=request.user)
-    professional_profile = get_object_or_404(ProfessionalProfile, profile=profile)
     profession = Profession.objects.filter(profile=profile)
     projects = Project.objects.filter(profile=profile)
     blogs = Blog.objects.filter(profile=profile)
+    tech_stack = Techonology.objects.filter(profile=profile)
     reviews = Review.objects.filter(profile=profile)
     context = {
         "profile":profile,
         "projects":projects,
         "blogs":blogs,
         "profession":profession,
-        "professional_profile":professional_profile,
         "reviews":reviews,
+        "tech_stack":tech_stack,
     }
     return render(request, "userportfoliyo/portfolio.html", context)
 
