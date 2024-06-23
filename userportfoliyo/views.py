@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from .forms import CommentForm
 # from django.http import HttpResponse
 # from django.template.loader import get_template
 # from xhtml2pdf import pisa
@@ -34,9 +35,23 @@ def project_detail_view(request, pk):
 @login_required
 def blog_detail_view(request, pk):
     blog = get_object_or_404(Blog, id=pk)
+    comments = Comment.objects.filter(blog=blog)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment=form.save(commit=False)
+            comment.comment_by = request.user
+            comment.blog = blog
+            comment.save()
+            return redirect("userportfoliyo:portfolio")
     
+    else:
+        form = CommentForm()
+
     context = {
         "blog":blog,
+        "comments":comments,
+        "form":form,
     }
     return render(request, "userportfoliyo/blog_detail.html", context)
 

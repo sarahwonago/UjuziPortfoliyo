@@ -51,3 +51,9 @@ class ServiceReviewForm(forms.ModelForm):
     class Meta:
         model=ServiceReview
         fields=["review"]     
+
+class CommentForm(forms.ModelForm):
+ 
+    class Meta:
+        model=Comment
+        fields=["comment"] 
