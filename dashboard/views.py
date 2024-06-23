@@ -21,30 +21,6 @@ def profile_view(request):
     return render(request, "dashboard/profile.html", context)
 
 
-def socials_view(request):
-    form = SocialsForm()
-    context = {
-        "form":form,
-    }
-    return render(request, "dashboard/socials.html", context)
-
-def professional_info_view(request):
-    iprofessional_profile = ProfessionalProfile.objects.get(profile=request.user.profile)
-    if request.method == 'POST':
-        form = ProfessionalProfileForm(request.POST, instance=iprofessional_profile)
-        if form.is_valid():
-            professional_profile=form.save(commit=False)
-            professional_profile.profile= request.user.profile
-            professional_profile.save()
-            return redirect("dashboard:dashboard")
-    else:
-       form = ProfessionalProfileForm(instance=iprofessional_profile)    
-    context = {
-        "form":form,
-
-    }
-    return render(request, "dashboard/professional.html", context)
-
 def add_work_view(request):
     if request.method == 'POST':
         form = WorkExperienceForm(request.POST)
@@ -303,3 +279,56 @@ def delete_review_view(request, pk):
         "review":review,
     }
     return render(request, "dashboard/delete_review.html", context)
+
+def add_tech_view(request):
+    if request.method == 'POST':
+        form = TechnologyForm(request.POST)
+        if form.is_valid():
+            tech=form.save(commit=False)
+            tech.profile= request.user.profile
+            tech.save()
+            return redirect("dashboard:tech-view")
+    else:
+        form = TechnologyForm()
+    context = {
+        "form":form,
+    }
+    return render(request, "dashboard/add_tech.html", context)
+
+
+def view_tech_view(request):
+    user=request.user
+    profile= get_object_or_404(Profile, user=user)
+    tech_list = Techonology.objects.filter(profile=profile)
+    context={
+        "tech_list":tech_list,
+    }
+    return render(request, "dashboard/view_tech.html", context)
+
+
+def edit_tech_view(request, pk):
+    tech = get_object_or_404(WorkExperience, id=pk)
+    if request.method == 'POST':
+        form = TechnologyForm(request.POST, instance=tech)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard:tech-view")
+    else:
+       form = TechnologyForm(instance=tech)  
+
+    context = {
+        "form":form,
+    }
+    return render(request, "dashboard/edit_tech.html", context)
+
+def delete_tech_view(request, pk):
+    tech = get_object_or_404(Techonology, id=pk)
+    if request.method == 'POST':
+        tech.delete()
+        return redirect("dashboard:tech-view")
+    
+    context = {
+        "tech":tech,
+    }
+    return render(request, "dashboard/delete_tech.html", context)
+
