@@ -1,10 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from userportfoliyo.forms import *
 from accounts.forms import UserModForm
 
+@login_required
 def dashboard(request):
     return render(request, "dashboard/dashboard.html")
 
+@login_required
 def profile_view(request):
     user=request.user
     profile= get_object_or_404(Profile, user=user)
@@ -21,6 +24,7 @@ def profile_view(request):
     }
     return render(request, "dashboard/profile.html", context)
 
+@login_required
 def personal_edit_view(request):
     if request.method == 'POST':
         form = UserModForm(request.POST, request.FILES, instance=request.user)
@@ -35,7 +39,7 @@ def personal_edit_view(request):
     }
     return render(request, "dashboard/personal_edit.html", context)
 
-
+@login_required
 def add_work_view(request):
     if request.method == 'POST':
         form = WorkExperienceForm(request.POST)
@@ -51,7 +55,7 @@ def add_work_view(request):
     }
     return render(request, "dashboard/add_work.html", context)
 
-
+@login_required
 def view_work_view(request):
     user=request.user
     profile= get_object_or_404(Profile, user=user)
@@ -61,7 +65,7 @@ def view_work_view(request):
     }
     return render(request, "dashboard/view_work.html", context)
 
-
+@login_required
 def edit_work_view(request, pk):
     work = get_object_or_404(WorkExperience, id=pk)
     if request.method == 'POST':
@@ -77,6 +81,7 @@ def edit_work_view(request, pk):
     }
     return render(request, "dashboard/edit_work.html", context)
 
+@login_required
 def delete_work_view(request, pk):
     work = get_object_or_404(WorkExperience, id=pk)
     if request.method == 'POST':
@@ -88,6 +93,7 @@ def delete_work_view(request, pk):
     }
     return render(request, "dashboard/delete_work.html", context)
 
+@login_required
 def add_profession_view(request):
     if request.method == 'POST':
         form = ProfessionForm(request.POST)
@@ -103,6 +109,7 @@ def add_profession_view(request):
     }
     return render(request, "dashboard/add_profession.html", context)
 
+@login_required
 def view_proffesion_view(request):
     user=request.user
     profile= get_object_or_404(Profile, user=user)
@@ -112,7 +119,7 @@ def view_proffesion_view(request):
     }
     return render(request, "dashboard/view_profession.html", context)
 
-
+@login_required
 def edit_profession_view(request, pk):
     profession = get_object_or_404(Profession, id=pk)
     if request.method == 'POST':
@@ -127,6 +134,7 @@ def edit_profession_view(request, pk):
     }
     return render(request, "dashboard/edit_profession.html", context)
 
+@login_required
 def delete_profession_view(request, pk):
     profession = get_object_or_404(Profession, id=pk)
     if request.method == 'POST':
@@ -138,6 +146,7 @@ def delete_profession_view(request, pk):
     }
     return render(request, "dashboard/delete_profession.html", context)
 
+@login_required
 def add_project_view(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES)
@@ -155,6 +164,7 @@ def add_project_view(request):
  
     return render(request, "dashboard/add_project.html", context)
 
+@login_required
 def view_project_view(request):
    
     user=request.user
@@ -165,7 +175,7 @@ def view_project_view(request):
     }
     return render(request, "dashboard/view_project.html", context)
 
-
+@login_required
 def edit_project_view(request, pk):
  
     project = get_object_or_404(Project, id=pk)
@@ -181,6 +191,7 @@ def edit_project_view(request, pk):
     }
     return render(request, "dashboard/edit_project.html", context)
 
+@login_required
 def delete_project_view(request, pk):
     project = get_object_or_404(Project, id=pk)
     if request.method == 'POST':
@@ -192,6 +203,7 @@ def delete_project_view(request, pk):
     }
     return render(request, "dashboard/delete_project.html", context)
 
+@login_required
 def add_blog_view(request):
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES)
@@ -208,6 +220,7 @@ def add_blog_view(request):
  
     return render(request, "dashboard/add_blog.html", context)
 
+@login_required
 def view_blog_view(request):
    
     user=request.user
@@ -218,7 +231,7 @@ def view_blog_view(request):
     }
     return render(request, "dashboard/view_blogs.html", context)
 
-
+@login_required
 def edit_blog_view(request, pk):
  
     blog = get_object_or_404(Blog, id=pk)
@@ -234,6 +247,7 @@ def edit_blog_view(request, pk):
     }
     return render(request, "dashboard/edit_blog.html", context)
 
+@login_required
 def delete_blog_view(request, pk):
     blog = get_object_or_404(Blog, id=pk)
     if request.method == 'POST':
@@ -245,7 +259,7 @@ def delete_blog_view(request, pk):
     }
     return render(request, "dashboard/delete_blog.html", context)
 
-
+@login_required
 def add_review_view(request):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -261,6 +275,7 @@ def add_review_view(request):
     }
     return render(request, "dashboard/add_review.html", context)
 
+@login_required
 def view_review_view(request):
     user=request.user
     profile= get_object_or_404(Profile, user=user)
@@ -270,7 +285,7 @@ def view_review_view(request):
     }
     return render(request, "dashboard/view_review.html", context)
 
-
+@login_required
 def edit_review_view(request, pk):
     review = get_object_or_404(Review, id=pk)
     if request.method == 'POST':
@@ -285,6 +300,7 @@ def edit_review_view(request, pk):
     }
     return render(request, "dashboard/edit_review.html", context)
 
+@login_required
 def delete_review_view(request, pk):
     review = get_object_or_404(Review, id=pk)
     if request.method == 'POST':
@@ -296,6 +312,7 @@ def delete_review_view(request, pk):
     }
     return render(request, "dashboard/delete_review.html", context)
 
+@login_required
 def add_tech_view(request):
     if request.method == 'POST':
         form = TechnologyForm(request.POST)
@@ -311,7 +328,7 @@ def add_tech_view(request):
     }
     return render(request, "dashboard/add_tech.html", context)
 
-
+@login_required
 def view_tech_view(request):
     user=request.user
     profile= get_object_or_404(Profile, user=user)
@@ -321,7 +338,7 @@ def view_tech_view(request):
     }
     return render(request, "dashboard/view_tech.html", context)
 
-
+@login_required
 def edit_tech_view(request, pk):
     tech = get_object_or_404(WorkExperience, id=pk)
     if request.method == 'POST':
@@ -337,6 +354,7 @@ def edit_tech_view(request, pk):
     }
     return render(request, "dashboard/edit_tech.html", context)
 
+@login_required
 def delete_tech_view(request, pk):
     tech = get_object_or_404(Techonology, id=pk)
     if request.method == 'POST':
@@ -348,6 +366,7 @@ def delete_tech_view(request, pk):
     }
     return render(request, "dashboard/delete_tech.html", context)
 
+@login_required
 def service_review_view(request):
     if request.method == 'POST':
         form = ServiceReviewForm(request.POST)

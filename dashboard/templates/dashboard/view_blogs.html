@@ -16,7 +16,7 @@
       {%for blog in blog_list%}
         <tr>
             <td>{{blog.title}}</td>
-            <td>{{blog.description|truncatewords:10}}</td>
+            <td>{{blog.body|truncatewords:10}}</td>
             <td>{{blog.created_at|timesince}}</td>
             <td>{{blog.updated_at|timesince}}</td>
             <td>
