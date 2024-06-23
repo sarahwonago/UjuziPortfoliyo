@@ -14,8 +14,14 @@
             <li><a href="">Profile Management</a>
                 <ul>
                     <li><a href="{% url 'dashboard:profile-edit' %}">Edit profile info</a></li>
-                    <li><a href="{% url 'dashboard:professional-info-edit' %}">Edit Professional info</a></li>
-                    <li><a href="{% url 'dashboard:socials-edit' %}">Edit socials</a></li>
+                </ul>
+            </li>
+            <li><a href="">Tech Stack Management</a>
+                <ul>
+                    <li><a href="{% url 'dashboard:tech-add' %}">Add Tech</a></li>
+                </ul>
+                <ul>
+                    <li><a href="{% url 'dashboard:tech-view' %}">View Tech Stack</a></li>
                 </ul>
             </li>
             <li><a href="">Work Experience</a>
@@ -54,6 +60,7 @@
                     <li><a href="{% url 'dashboard:review-view' %}">View Reviews</a></li>
                 </ul>
             </li>
+            
             <li><a href="">Others</a>
                 <ul>
                     <li><a href="">Rate our Service</a></li>

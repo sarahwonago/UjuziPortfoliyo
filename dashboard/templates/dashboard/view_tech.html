@@ -1,12 +1,11 @@
 {%extends 'dashboard/base.html'%}
 {%block content%}
 <section>
-   <h2>View profesion</h2>
+   <h2>Tech Stack List</h2>
    <table>
     <thead>
         <tr>
-            <th>Profession</th>
-            <th>Description</th>
+            <th>Name</th>
             <th>Created_At</th>
             <th>Updated_At</th>
             <th>Actions</th>
@@ -15,18 +14,16 @@
     <tbody>
       {%for profession in profession_list%}
         <tr>
-            <td>{{profession.name}}</td>
-            <td>{{profession.description|truncatewords:10}}</td>
+            <td>{{tech.name}}</td>
             <td>{{profession.created_at|timesince}}</td>
             <td>{{profession.updated_at|timesince}}</td>
             <td>
-                <a href="{% url 'dashboard:profession-edit' profession.id %}"><button>Edit</button></a>
-                <a href="{% url 'dashboard:profession-delete' profession.id %}"><button>Delete</button></a>
+                <a href="{% url 'dashboard:tech-edit' tech.id %}"><button>Edit</button></a>
+                <a href="{% url 'dashboard:tech-delete' tech.id %}"><button>Delete</button></a>
             </td>
         </tr>
       {%empty%}
       <tr>
-         <td>Populate profession</td>
          <td>Populate profession</td>
          <td>Populate profession</td>
          <td>Populate profession</td>

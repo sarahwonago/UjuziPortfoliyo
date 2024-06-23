@@ -8,6 +8,8 @@
             <th>Organization</th>
             <th>Role</th>
             <th>Year</th>
+            <th>Created_At</th>
+            <th>Updated_At</th>
             <th>Description</th>
             <th>Actions</th>
         </tr>
@@ -18,6 +20,8 @@
             <td>{{work.organization}}</td>
             <td>{{work.role}}</td>
             <td>{{work.year}}</td>
+            <td>{{work.created_at|timesince}}</td>
+            <td>{{work.updated_at|timesince}}</td>
             <td>{{work.description|truncatewords:10}}</td>
             <td>
                 <a href="{% url 'dashboard:work-edit' work.id %}"><button>Edit</button></a>
@@ -26,6 +30,8 @@
         </tr>
       {%empty%}
       <tr>
+         <td>Populate Work Experience</td>
+         <td>Populate Work Experience</td>
          <td>Populate Work Experience</td>
          <td>Populate Work Experience</td>
          <td>Populate Work Experience</td>

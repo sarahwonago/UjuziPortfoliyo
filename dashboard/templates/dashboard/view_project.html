@@ -7,6 +7,8 @@
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Created_At</th>
+            <th>Updated_At</th>
             <th>Demo Link</th>
             <th>Actions</th>
         </tr>
@@ -16,6 +18,8 @@
         <tr>
             <td>{{project.name}}</td>
             <td>{{project.description|truncatewords:10}}</td>
+            <td>{{project.created_at|timesince}}</td>
+            <td>{{project.updated_at|timesince}}</td>
             <td>{{project.demo_link}}</td>
             <td>
                 <a href="{% url 'dashboard:project-edit' project.id %}"><button>Edit</button></a>
@@ -24,6 +28,8 @@
         </tr>
       {%empty%}
       <tr>
+         <td>Populate Projects</td>
+         <td>Populate Projects</td>
          <td>Populate Projects</td>
          <td>Populate Projects</td>
          <td>Populate Projects</td>

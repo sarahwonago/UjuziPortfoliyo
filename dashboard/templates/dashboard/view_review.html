@@ -8,6 +8,8 @@
             <th>Reviewer</th>
             <th>Role</th>
             <th>Organization</th>
+            <th>Created_At</th>
+            <th>Updated_At</th>
             <th>Review</th>
             <th>Actions</th>
         </tr>
@@ -18,6 +20,8 @@
             <td>{{review.reviewer_name}}</td>
             <td>{{review.reviewer_role}}</td>
             <td>{{review.reviewer_organization}}</td>
+            <td>{{review.created_at|timesince}}</td>
+            <td>{{review.updated_at|timesince}}</td>
             <td>{{review.review|truncatewords:10}}</td>
             <td>
                 <a href="{% url 'dashboard:review-edit' review.id %}"><button>Edit</button></a>
@@ -26,6 +30,8 @@
         </tr>
       {%empty%}
       <tr>
+         <td>Populate Reviews</td>
+         <td>Populate Reviews</td>
          <td>Populate Reviews</td>
          <td>Populate Reviews</td>
          <td>Populate Reviews</td>

@@ -1,11 +1,12 @@
 {%extends 'dashboard/base.html'%}
 {%block content%}
 <section>
-    <h2>Edit Socials</h2>
+    <h2>Add Tech Stack</h2>
     <form action="" method="post">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Save</button>
+        <button><a href="{% url 'dashboard:tech-view' %}">Cancel</a></button>
     </form>
 </section>
 {% endblock content%}
