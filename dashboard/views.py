@@ -7,10 +7,15 @@ from accounts.forms import UserModForm
 def dashboard(request):
     return render(request, "dashboard/dashboard.html")
 
+
+def forbidden(request):
+    return render(request, "dashboard/forbidden.html")
+
 @login_required
 def profile_view(request):
     user=request.user
     profile= get_object_or_404(Profile, user=user)
+  
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
@@ -68,6 +73,8 @@ def view_work_view(request):
 @login_required
 def edit_work_view(request, pk):
     work = get_object_or_404(WorkExperience, id=pk)
+    if work.profile.user != request.user:
+        return redirect('dashboard:forbidden')
     if request.method == 'POST':
         form = WorkExperienceForm(request.POST, instance=work)
         if form.is_valid():
@@ -84,6 +91,10 @@ def edit_work_view(request, pk):
 @login_required
 def delete_work_view(request, pk):
     work = get_object_or_404(WorkExperience, id=pk)
+
+    if work.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+    
     if request.method == 'POST':
         work.delete()
         return redirect("dashboard:work-view")
@@ -122,6 +133,10 @@ def view_proffesion_view(request):
 @login_required
 def edit_profession_view(request, pk):
     profession = get_object_or_404(Profession, id=pk)
+    
+    if profession.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+    
     if request.method == 'POST':
         form = ProfessionForm(request.POST, instance=profession)
         if form.is_valid():
@@ -137,6 +152,10 @@ def edit_profession_view(request, pk):
 @login_required
 def delete_profession_view(request, pk):
     profession = get_object_or_404(Profession, id=pk)
+
+    if profession.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+    
     if request.method == 'POST':
         profession.delete()
         return redirect("dashboard:profession-view")
@@ -179,6 +198,10 @@ def view_project_view(request):
 def edit_project_view(request, pk):
  
     project = get_object_or_404(Project, id=pk)
+
+    if project.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+    
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES, instance=project)
         if form.is_valid():
@@ -194,6 +217,10 @@ def edit_project_view(request, pk):
 @login_required
 def delete_project_view(request, pk):
     project = get_object_or_404(Project, id=pk)
+
+    if project.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+    
     if request.method == 'POST':
         project.delete()
         return redirect("dashboard:project-view")
@@ -235,6 +262,10 @@ def view_blog_view(request):
 def edit_blog_view(request, pk):
  
     blog = get_object_or_404(Blog, id=pk)
+
+    if blog.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+    
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES, instance=blog)
         if form.is_valid():
@@ -250,6 +281,10 @@ def edit_blog_view(request, pk):
 @login_required
 def delete_blog_view(request, pk):
     blog = get_object_or_404(Blog, id=pk)
+
+    if blog.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+
     if request.method == 'POST':
         blog.delete()
         return redirect("dashboard:blog-view")
@@ -288,6 +323,10 @@ def view_review_view(request):
 @login_required
 def edit_review_view(request, pk):
     review = get_object_or_404(Review, id=pk)
+
+    if review.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
@@ -303,6 +342,10 @@ def edit_review_view(request, pk):
 @login_required
 def delete_review_view(request, pk):
     review = get_object_or_404(Review, id=pk)
+
+    if review.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+
     if request.method == 'POST':
         review.delete()
         return redirect("dashboard:review-view")

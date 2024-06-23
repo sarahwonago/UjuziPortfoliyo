@@ -3,6 +3,7 @@ from .views import *
 
 app_name = 'dashboard'
 urlpatterns=[
+    path("forbidden/", forbidden, name="forbidden"),
     path("add_tech/", add_tech_view, name="tech-add"),
     path("view_tech/",view_tech_view,name="tech-view"),
     path("edit_tech/<int:pk>", edit_tech_view, name="tech-edit"),
