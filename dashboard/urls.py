@@ -3,6 +3,10 @@ from .views import *
 
 app_name = 'dashboard'
 urlpatterns=[
+    path("add_tech/", add_tech_view, name="tech-add"),
+    path("view_tech/",view_tech_view,name="tech-view"),
+    path("edit_tech/<int:pk>", edit_tech_view, name="tech-edit"),
+    path("delete_tech/<int:pk>", delete_tech_view, name="tech-delete"),
     path("add_review/", add_review_view, name="review-add"),
     path("view_review/",view_review_view,name="review-view"),
     path("edit_review/<int:pk>", edit_review_view, name="review-edit"),
@@ -23,8 +27,6 @@ urlpatterns=[
     path("view_work_experience/", view_work_view, name="work-view"),
     path("edit_work_experience/<int:pk>/", edit_work_view, name="work-edit"),
     path("delete_work/<int:pk>/",delete_work_view, name="work-delete"),
-    path("professional_info_edit/", professional_info_view, name="professional-info-edit"),
-    path("socials_edit/", socials_view, name="socials-edit"),
     path("profile_edit/", profile_view, name="profile-edit"),
     path("", dashboard, name="dashboard"),
 ]
