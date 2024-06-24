@@ -7,9 +7,7 @@ from xhtml2pdf import pisa
 
 from .models import *
 
-def user_portfolio(request, username):
-    username = request.GET.get("username")
-    print(username)
+def public_user_portfolio(request, username):
     user = get_object_or_404(User, username=username)
     profile = get_object_or_404(Profile, user=user)
     profession = Profession.objects.filter(profile=profile)
@@ -26,6 +24,40 @@ def user_portfolio(request, username):
         "reviews":reviews,
     }
     return render(request, 'userportfoliyo/public_portfolio.html', context)
+
+
+def public_blog_detail_view(request, pk, username):
+    user = get_object_or_404(User, username=username)
+    blog = get_object_or_404(Blog, id=pk, profile__user=user)
+    comments = Comment.objects.filter(blog=blog)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment=form.save(commit=False)
+            comment.comment_by = request.user
+            comment.blog = blog
+            comment.save()
+            return redirect("userportfoliyo:portfolio")
+    
+    else:
+        form = CommentForm()
+
+    context = {
+        "blog":blog,
+        "comments":comments,
+        "form":form,
+    }
+    return render(request, "userportfoliyo/public_blog_detail.html", context)
+
+
+def public_project_detail_view(request, pk, username):
+    user = get_object_or_404(User, username=username)
+    project = get_object_or_404(Project, id=pk, profile__user=user)
+    
+    context = {
+        "project":project,
+    }
+    return render(request, "userportfoliyo/public_project.html", context)
 
 @login_required
 def portfolio_view(request):

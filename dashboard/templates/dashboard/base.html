@@ -76,7 +76,7 @@
             </li>
             <li><a href="">Others</a>
                 <ul>
-                    <li>Share Your Portfolio Website Link: <a href="{% url 'userportfoliyo:user_portfolio' user.username %}?username={{user.username}}" target="_blank">{{ request.build_absolute_uri|slice:":-1" }}{% url 'userportfoliyo:user_portfolio' user.username %}?username={{user.username}}</a></li>
+                    <li>Share Your Portfolio Website Link: <a href="{% url 'userportfoliyo:user_portfolio' user.username %}" target="_blank">{{ request.build_absolute_uri|slice:":-1" }}{% url 'userportfoliyo:user_portfolio' user.username %}</a></li>
                     <li><a href="{% url 'dashboard:service-review' %}">Rate our Service</a></li>
                 </ul>
             </li>
