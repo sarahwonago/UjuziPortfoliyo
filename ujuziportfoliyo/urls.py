@@ -9,6 +9,7 @@ urlpatterns = [
 
     #auth
     path("accounts/", include('django.contrib.auth.urls')),
+    
     #Custom
     path("userportfolio/", include('userportfoliyo.urls')),
     path("accounts/", include('accounts.urls')),
