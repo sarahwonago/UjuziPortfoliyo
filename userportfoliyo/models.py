@@ -18,12 +18,48 @@ class Techonology(models.Model):
     def __str__(self):
         return self.name
     
+class SoftSkills(models.Model):
+    class Meta:
+        verbose_name_plural = "Soft Skills"
+        verbose_name = "Soft Skills"
+
+    name = models.CharField("Soft Skills",max_length=250, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+    
+class Institution(models.Model):
+    class Meta:
+        verbose_name_plural = "Institution"
+        verbose_name = "Institution"
+
+    name = models.CharField("Institution",max_length=250, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+    
 class Organization(models.Model):
     class Meta:
         verbose_name_plural = "Organization"
         verbose_name = "Organization"
 
     name = models.CharField("Organization",max_length=250, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+    
+class StudyField(models.Model):
+    class Meta:
+        verbose_name_plural = "StudyField"
+        verbose_name = "StudyField"
+
+    name = models.CharField("Field of Study",max_length=250, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -42,6 +78,7 @@ class TechRole(models.Model):
     def __str__(self):
         return self.name
     
+    
 class Profile(models.Model):
 
     class Meta:
@@ -53,6 +90,7 @@ class Profile(models.Model):
     user_cv =models.FileField(null=True, blank=True)
     bio = models.TextField()
     tech_stack = models.ManyToManyField(Techonology)
+    soft_skills = models.ManyToManyField(SoftSkills)
 
     def __str__(self):
         return f'{self.user.username}'
@@ -96,9 +134,10 @@ class WorkExperience(models.Model):
     role = models.ForeignKey(TechRole, on_delete=models.CASCADE)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     year = models.DateField()
+    location = models.CharField(max_length=250, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    description = models.TextField()
+    description = models.TextField("Description of Responsibilities")
 
     def __str__(self):
         return self.organization
@@ -179,3 +218,35 @@ class ServiceReview(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+class Education(models.Model):
+    class Meta:
+        verbose_name_plural = "Education"
+        verbose_name = "Education"
+
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_education")
+    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
+    field_of_study = models.ForeignKey(StudyField, on_delete=models.CASCADE)
+    graduation_date = models.DateTimeField()
+    grade = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    description = models.TextField("Summary of Education")
+
+    def __str__(self):
+        return self.institution.name
+    
+class Certification(models.Model):
+    class Meta:
+        verbose_name_plural = "Certifications"
+        verbose_name = "Certification"
+
+    name= models.CharField("Certification Name",max_length=250)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_certifications")
+    organization = models.CharField("Issuing-Organization",max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    description = models.TextField("Summary of Certification")
+
+    def __str__(self):
+        return self.name

@@ -62,9 +62,21 @@
                     <li><a href="{% url 'dashboard:review-view' %}">View Reviews</a></li>
                 </ul>
             </li>
-            
+            <li><a href="">Education</a>
+                <ul>
+                    <li><a href="">Add Education</a></li>
+                    <li><a href="">View Education</a></li>
+                </ul>
+            </li>
+            <li><a href="">Certifications</a>
+                <ul>
+                    <li><a href="">Add Certification</a></li>
+                    <li><a href="">View Certifications</a></li>
+                </ul>
+            </li>
             <li><a href="">Others</a>
                 <ul>
+                    <li>Share Your Portfolio Website Link: <a href="{% url 'userportfoliyo:user_portfolio' user.username %}?username={{user.username}}" target="_blank">{{ request.build_absolute_uri|slice:":-1" }}{% url 'userportfoliyo:user_portfolio' user.username %}?username={{user.username}}</a></li>
                     <li><a href="{% url 'dashboard:service-review' %}">Rate our Service</a></li>
                 </ul>
             </li>

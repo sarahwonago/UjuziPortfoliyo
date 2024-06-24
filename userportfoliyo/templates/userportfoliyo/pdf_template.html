@@ -3,29 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Curriculum Vitae</title>
 </head>
 <body>
     <section>
         <div class="bannerSection">
           <div class="container">
             <div class="row g-4 g-md-3  align-items-center">
-              <div class="col-md-auto order-md-last">
-                <div class="bannerUserImg">
-                  <p>Profile Photo</p>
-                  {% if profile.profilephoto %}
-                  <img src="{{profile.profilephoto.url}}" alt="userprofile">
-                  {% endif %}
-                </div>
-              </div>
+  
               <div class="col-md">
                 <div class="bannerContent">
-                  {% if profile.profession and profile.bio %}
-                  <h1 class="xlTitle pb-3">Hi, I’m {{profile.user.username|title}}, <br> a {{profile.profession}} </br></h1>
+                  <h1 class="xlTitle pb-3">Hi, I’m {{profile.user.username|title}}, <br> a {{profession.name}}</br></h1>
                   <p>{{profile.bio}}</p>
-                  {% else %}
-                  <p>Populate your profile to generate the resume</p>
-                  {% endif %}
+
                   <div class="bannerBtnCol">
                   </div>
                 </div>
@@ -37,12 +27,12 @@
     <div>
       <h2>Personal Information:</h2>
         <ul>
-          <li>Full name</li>
+          <li>{{profile.user.first_name}} {{profile.user.last_name}}</li>
           <li>Contact Info:
             <ul>
-              <li>Phone</li>
-              <li>Email Address</li>
-              <li>Mailing Address</li>
+              <li>{{profile.user.phone_number}}</li>
+              <li>{{profile.user.email}}</li>
+              <li>{{profile.user.country}}</li>
             </ul>
           </li>
         </ul>

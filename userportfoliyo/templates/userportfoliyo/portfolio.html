@@ -42,12 +42,13 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="hero-img " data-wow-duration="0.8s" data-wow-delay="0.6s">
+                            <div class="hero-img">
                                 <div class="img-border">
                                     <img src="{{user.profilephoto.url}}" alt=""  class="img-fluid">
                                 </div>
                             </div>
                         </div>
+                      
                     </div>
                 </div>
             </div>
@@ -84,7 +85,8 @@
                                     {%endfor%}
                                 </ul>
                             </div>
-                            <a href="" class="btn btn-fill " data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod My CV <i class="fa fa-download"></i></a>
+                            <a href="{% url 'userportfoliyo:download_cv'%}" class="btn btn-fill " data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod My CV <i class="fa fa-download"></i></a>
+                            
                         </div>
                     </div>
                 </div>
