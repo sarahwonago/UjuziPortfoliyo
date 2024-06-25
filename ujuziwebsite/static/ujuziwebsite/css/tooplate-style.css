@@ -8,13 +8,11 @@
   }
 
 
-
   /*---------------------------------------
      TYPOGRAPHY              
   -----------------------------------------*/
 
   h1,h2,h3,h4,h5,h6 {
-    font-weight: 300;
     line-height: normal;
   }
 
@@ -86,19 +84,6 @@
     text-align: center;
   }
 
-  .overlay {
-    background: #536976;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #292E49, #536976);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #292E49, #536976); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    opacity: 0.9;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
 
   .online-form {
     position: relative;
@@ -152,7 +137,10 @@
 
   .section-btn:hover,
   .section-btn:focus {
-    background: #202020;
+    color: #ffffff;
+  }
+
+  #myy{
     color: #ffffff;
   }
 
@@ -213,13 +201,13 @@
   -----------------------------------------*/
 
   .custom-navbar {
-    border: none;
+    border: 2px;
     margin-bottom: 0;
     padding: 25px 0;
   }
 
   .custom-navbar .navbar-brand {
-    color: #ffffff;
+    color: #080808;
     font-size: 25px;
     font-weight: 500;
     letter-spacing: -1px;
@@ -235,8 +223,7 @@
 
   .custom-navbar .nav li a {
     font-size: 16px;
-    font-weight: normal;
-    color: #f0f0f0;
+    font-weight: bold;
     padding-right: 22px;
     padding-left: 22px;
   }
@@ -304,7 +291,6 @@
   -----------------------------------------*/
 
   #home {
-    background: url('../images/home-bg.jpg') no-repeat center center;
     background-size: cover;
     vertical-align: middle;
     display: -webkit-box;
@@ -322,8 +308,9 @@
   }
 
   #home h1 {
-    color: #ffffff;
+    color: #353535;
     margin-top: 10px;
+    font-weight: bold;
     margin-bottom: 40px;
   }
 
@@ -332,9 +319,9 @@
   }
 
   .home-info h3 {
-    color: #f0f0f0;
-    font-size: 11px;
-    font-weight: bold;
+    color: #353535;
+    font-size: 20px;
+    font-weight: medium;
     letter-spacing: 4px;
     text-transform: uppercase;
     margin: 10px 0;
@@ -533,64 +520,13 @@
 
 
 
-  /*---------------------------------------
-      PRICING             
-  -----------------------------------------*/
 
   #about .section-title,
   #pricing .section-title {
     text-align: center;
   }
 
-  #pricing .col-md-4 {
-    margin: 0;
-    padding: 0;
-  }
-
-  #pricing .col-md-4:last-child .pricing-thumb {
-    border-right: 0;
-  }
-
-  .pricing-thumb {
-    background: #ffffff;
-    border-right: 2px solid #f0f0f0;
-    padding: 20px 40px;
-  }
-
-  .pricing-title {
-    padding-bottom: 5px;
-  }
-
-  .pricing-info {
-    border-top: 2px solid #f0f0f0;
-    border-bottom: 2px solid #f0f0f0;
-  }
-
-  .pricing-info,
-  .pricing-bottom {
-    padding: 20px 0;
-  }
-
-  .pricing-info p {
-    font-size: 16px;
-  }
-
-  .pricing-bottom {
-    position: relative;
-  }
-
-  .pricing-bottom span {
-    font-size: 20px;
-  }
-
-  .pricing-btn {
-    position: absolute;
-    top: 15px;
-    right: 0;
-    display: inline-block;
-  }
-
-
+  
 
   /*---------------------------------------
       CONTACT             
