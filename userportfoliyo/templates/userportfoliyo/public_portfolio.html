@@ -85,7 +85,7 @@
                                     {%endfor%}
                                 </ul>
                             </div>
-                            <a href="{% url 'userportfoliyo:download_cv' user.username %}" class="btn btn-fill " data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod My CV <i class="fa fa-download"></i></a>
+                            <a href="{% url 'userportfoliyo:public_download_cv' user.username %}" class="btn btn-fill " data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod My CV <i class="fa fa-download"></i></a>
                             
                         </div>
                     </div>
@@ -463,21 +463,21 @@
              
                         <div class="col-sm-12 col-md-6 " >
                             <p>Now that you know about me, you can reach out for any freelancing opportunities , contract work or just to say hi !</p>
-                            <form method="post" action="">
+                            <form method="post" action="{% url 'userportfoliyo:public-send-email' user.username %}">
                                 {% csrf_token %}
                                 <div id="msgSubmit" class="h3 text-center hidden"></div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
-                                        <input name="name" class="contact-name form-control"  type="text" placeholder="UserName" required>
+                                        <input name="name" class="contact-name form-control"  type="text" placeholder="UserName" >
                                     </div>
                                     <div class="col-md-6 col-sm-12">
-                                        <input name="subject" class="contact-subject form-control"  type="text" placeholder="Subject" required>
+                                        <input name="subject" class="contact-subject form-control"  type="text" placeholder="Subject" >
                                     </div>
                                     <div class="col-sm-12">
-                                        <input name="email" class="contact-email form-control"  type="email" placeholder="Email" required>
+                                        <input name="from_email" class="contact-email form-control"  type="email" placeholder="Email" >
                                     </div>
                                     <div class="col-sm-12">
-                                        <textarea name="message" class="contact-message" rows="6" placeholder="Message" required></textarea>
+                                        <textarea name="message" class="contact-message" rows="6" placeholder="Message" ></textarea>
                                     </div>
                                    
                                     <div class="btn-form col-sm-12">

@@ -9,7 +9,7 @@ User =get_user_model()
 class Techonology(models.Model):
     class Meta:
         verbose_name_plural = "Technologies"
-        verbose_name = "Technology"
+        ordering = ("-created_at",)
 
     name = models.CharField("Tech-Stack",max_length=250, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -21,7 +21,8 @@ class Techonology(models.Model):
 class SoftSkills(models.Model):
     class Meta:
         verbose_name_plural = "Soft Skills"
-        verbose_name = "Soft Skills"
+        verbose_name = "Soft Skill"
+        ordering = ("-created_at",)
 
     name = models.CharField("Soft Skills",max_length=250, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -32,8 +33,9 @@ class SoftSkills(models.Model):
     
 class Institution(models.Model):
     class Meta:
-        verbose_name_plural = "Institution"
+        verbose_name_plural = "Institutions"
         verbose_name = "Institution"
+        ordering = ("-created_at",)
 
     name = models.CharField("Institution",max_length=250, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -44,8 +46,9 @@ class Institution(models.Model):
     
 class Organization(models.Model):
     class Meta:
-        verbose_name_plural = "Organization"
+        verbose_name_plural = "Organizations"
         verbose_name = "Organization"
+        ordering = ("-created_at",)
 
     name = models.CharField("Organization",max_length=250, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -56,8 +59,9 @@ class Organization(models.Model):
     
 class StudyField(models.Model):
     class Meta:
-        verbose_name_plural = "StudyField"
+        verbose_name_plural = "StudyFields"
         verbose_name = "StudyField"
+        ordering = ("-created_at",)
 
     name = models.CharField("Field of Study",max_length=250, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -68,8 +72,9 @@ class StudyField(models.Model):
     
 class TechRole(models.Model):
     class Meta:
-        verbose_name_plural = "TechRole"
-        verbose_name = "TechRoles"
+        verbose_name_plural = "TechRoles"
+        verbose_name = "TechRole"
+        ordering = ("-created_at",)
 
     name = models.CharField("Tech-Role",max_length=250, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -112,6 +117,7 @@ class Profession(models.Model):
     class Meta:
         verbose_name_plural = "Profession"
         verbose_name = "Profession"
+        ordering = ("-created_at",)
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profession_profile")
     name = models.ForeignKey(TechRole, on_delete=models.CASCADE)
@@ -129,6 +135,7 @@ class WorkExperience(models.Model):
     class Meta:
         verbose_name_plural = "WorkExperience"
         verbose_name = "WorkExperience"
+        ordering = ("-created_at",)
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_workexperience")
     role = models.ForeignKey(TechRole, on_delete=models.CASCADE)
@@ -147,6 +154,7 @@ class Project(models.Model):
     class Meta:
         verbose_name_plural = "Projects"
         verbose_name = "Project"
+        ordering = ("-created_at",)
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_project")
     name = models.CharField(max_length=250)
@@ -165,6 +173,7 @@ class Blog(models.Model):
     class Meta:
         verbose_name_plural = "Blogs"
         verbose_name = "Blog"
+        ordering = ("-created_at",)
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_blog")
     title = models.CharField(max_length=250)
@@ -178,8 +187,9 @@ class Blog(models.Model):
     
 class Comment(models.Model):
     class Meta:
-        verbose_name_plural = "Comment"
-        verbose_name = "Comments"
+        verbose_name_plural = "Comments"
+        verbose_name = "Comment"
+        ordering = ("-created_at",)
 
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="blog_comment")
     comment_by = models.CharField(max_length=250)
@@ -194,6 +204,7 @@ class Review(models.Model):
     class Meta:
         verbose_name_plural = "Reviews"
         verbose_name = "Review"
+        ordering = ("-created_at",)
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_review")
     reviewer_name = models.CharField(max_length=250)
@@ -210,6 +221,7 @@ class ServiceReview(models.Model):
     class Meta:
         verbose_name_plural = "ServiceReview"
         verbose_name = "ServiceReview"
+        ordering = ("-created_at",)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -223,6 +235,7 @@ class Education(models.Model):
     class Meta:
         verbose_name_plural = "Education"
         verbose_name = "Education"
+        ordering = ("-created_at",)
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_education")
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
@@ -240,6 +253,7 @@ class Certification(models.Model):
     class Meta:
         verbose_name_plural = "Certifications"
         verbose_name = "Certification"
+        ordering = ("-created_at",)
 
     name= models.CharField("Certification Name",max_length=250)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_certifications")

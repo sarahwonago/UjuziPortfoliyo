@@ -6,8 +6,9 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ["bio","about_me","tech_stack","soft_skills","user_cv"]
-     
-        
+        widgets = {
+            "bio":forms.Textarea(attrs={"minlength":100, "maxlength":250})
+        }
 
 class WorkExperienceForm(forms.ModelForm):
     class Meta:
