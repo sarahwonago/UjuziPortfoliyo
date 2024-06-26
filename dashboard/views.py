@@ -7,6 +7,17 @@ from accounts.forms import UserModForm
 def dashboard(request):
     return render(request, "dashboard/dashboard.html")
 
+@login_required
+def cvpreview_view(request):
+    return render(request, "dashboard/cvpreview.html")
+
+
+def public_cvpreview_view(request, username):
+    user=get_object_or_404(User, username=username)
+    context={
+        "user":user,
+    }
+    return render(request, "dashboard/cvpreview.html", context)
 
 def forbidden(request):
     return render(request, "dashboard/forbidden.html")

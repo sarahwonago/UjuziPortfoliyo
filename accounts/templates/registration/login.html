@@ -1,17 +1,18 @@
 {% extends 'ujuziwebsite/base.html'%}
 {% load static %}
 {% block title %}Login {% endblock title %}
-
+{% load crispy_forms_tags%}
 {% block content %}
 <section id="home" data-stellar-background-ratio="0.5">
 	<div class="container">
+		
 		 <div>
 
 			<form action="" method="post">
 				{% csrf_token %}
-				{{form.as_p}}
-				<button type="submit">LOGIN</button>
-				<a href="{% url 'password_reset' %}" target="_blank"> Forgot Password?</a>
+				{{form|crispy}}
+				<button class="section-btn" type="submit">LOGIN</button>
+				<a  href="{% url 'password_reset' %}"> Forgot Password?</a>
 			</form>
 		   </div>
 

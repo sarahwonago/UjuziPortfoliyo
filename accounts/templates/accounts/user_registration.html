@@ -1,7 +1,7 @@
 {% extends 'ujuziwebsite/base.html'%}
 {% load static %}
 {% block title %}Register {% endblock title %}
-
+{% load crispy_forms_tags%}
 {% block content %}
 
 <section id="home" data-stellar-background-ratio="0.5">
@@ -10,8 +10,8 @@
 
 			<form action="" method="post">
 				{% csrf_token %}
-				{{form.as_p}}
-				<button type="submit">REGISTER</button>
+				{{form|crispy}}
+				<button class="section-btn" type="submit">REGISTER</button>
 			</form>
 		   </div>
 

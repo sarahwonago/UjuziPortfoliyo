@@ -3,6 +3,8 @@ from .views import *
 
 app_name = 'dashboard'
 urlpatterns=[
+    path("public/cvpreview/<str:username>/", public_cvpreview_view, name="public_cvpreview"),
+    path("cvpreview/", cvpreview_view, name="cvpreview"),
     path("forbidden/", forbidden, name="forbidden"),
     path("add_tech/", add_tech_view, name="tech-add"),
     path("view_tech/",view_tech_view,name="tech-view"),

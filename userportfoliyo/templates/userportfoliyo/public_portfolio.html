@@ -85,7 +85,8 @@
                                     {%endfor%}
                                 </ul>
                             </div>
-                            <a href="{% url 'userportfoliyo:public_download_cv' user.username %}" class="btn btn-fill " data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod My CV <i class="fa fa-download"></i></a>
+                            <a target="_blank" href="{% url 'dashboard:public_cvpreview' user.username %}" class="btn btn-fill " data-wow-duration="0.8s" data-wow-delay="0.4s">View My CV</a>
+                
                             
                         </div>
                     </div>

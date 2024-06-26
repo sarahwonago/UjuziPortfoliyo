@@ -18,15 +18,7 @@
                 <ul>
                     <li><a href="{% url 'dashboard:profile-edit' %}">Edit profile info</a></li>
                     <li><a href="{% url 'dashboard:personal-edit' %}">Edit personal info</a></li>
-                    <li><a href="{% url 'password_change' %}" target="_blank">Change Password</a></li>
-                </ul>
-            </li>
-            <li><a href="">Tech Stack Management</a>
-                <ul>
-                    <li><a href="{% url 'dashboard:tech-add' %}">Add Tech</a></li>
-                </ul>
-                <ul>
-                    <li><a href="{% url 'dashboard:tech-view' %}">View Tech Stack</a></li>
+                    <li><a href="{% url 'password_change' %}">Change Password</a></li>
                 </ul>
             </li>
             <li><a href="">Work Experience</a>
@@ -79,8 +71,11 @@
             </li>
             <li><a href="">Others</a>
                 <ul>
+                    <li><a target="_blank" href="{% url 'userportfoliyo:portfolio'%}">Portfolio Preview</a></li>
+                    <li><a target="_blank" href="{% url 'dashboard:cvpreview' %}">CV Preview</a></li>
                     <li>Share Your Portfolio Website Link: <a href="{% url 'userportfoliyo:user_portfolio' user.username %}" target="_blank">{{ request.build_absolute_uri|slice:":-1" }}{% url 'userportfoliyo:user_portfolio' user.username %}</a></li>
                     <li><a href="{% url 'dashboard:service-review' %}">Rate our Service</a></li>
+                    <li><a href="{% url 'accounts:logout_user' %}">Logout</a></li>
                 </ul>
             </li>
         </ul>
