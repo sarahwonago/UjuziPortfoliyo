@@ -2,6 +2,11 @@
 {%block content%}
 <section>
    <h2>Blogs</h2>
+   <form method="get">
+    <input type="text" name="q" placeholder="search by title, description...">
+    <button type="search">Search</button></a>
+
+   </form>
    <table>
     <thead>
         <tr>
@@ -16,9 +21,9 @@
       {%for blog in blog_list%}
         <tr>
             <td>{{blog.title}}</td>
-            <td>{{blog.body|truncatewords:10}}</td>
-            <td>{{blog.created_at|timesince}}</td>
-            <td>{{blog.updated_at|timesince}}</td>
+            <td>{{blog.body|truncatewords:5}}</td>
+            <td>{{blog.created_at|timesince}} ago</td>
+            <td>{{blog.updated_at|timesince}} ago</td>
             <td>
                 <a href="{% url 'dashboard:blog-edit' blog.id %}"><button>Edit</button></a>
                 <a href="{% url 'dashboard:blog-delete' blog.id %}"><button>Delete</button></a>
@@ -26,14 +31,11 @@
         </tr>
       {%empty%}
       <tr>
-         <td>Populate Blogs</td>
-         <td>Populate Blogs</td>
-         <td>Populate Blogs</td>
-         <td>Populate Blogs</td>
-         <td>
-             <a href=""><button>Edit</button></a>
-             <a href=""><button>Delete</button></a>
-         </td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
      </tr>
       {% endfor %}
     </tbody>

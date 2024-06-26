@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from userportfoliyo.forms import *
 from accounts.forms import UserModForm
 
@@ -74,8 +75,9 @@ def add_work_view(request):
 @login_required
 def view_work_view(request):
     user=request.user
+    q = request.GET.get("q", "")
     profile= get_object_or_404(Profile, user=user)
-    work_list = WorkExperience.objects.filter(profile=profile)
+    work_list = WorkExperience.objects.filter(Q(role__name__icontains=q)|Q(organization__name__icontains=q)|Q(year__icontains=q), profile=profile)
     context={
         "work_list":work_list,
     }
@@ -134,8 +136,9 @@ def add_profession_view(request):
 @login_required
 def view_proffesion_view(request):
     user=request.user
+    q = request.GET.get("q", "")
     profile= get_object_or_404(Profile, user=user)
-    profession_list = Profession.objects.filter(profile=profile)
+    profession_list = Profession.objects.filter(Q(name__name__icontains=q)|Q(description__icontains=q),profile=profile)
     context={
         "profession_list":profession_list
     }
@@ -198,8 +201,10 @@ def add_project_view(request):
 def view_project_view(request):
    
     user=request.user
+    q = request.GET.get("q", "")
     profile= get_object_or_404(Profile, user=user)
-    project_list = Project.objects.filter(profile=profile)
+    project_list = Project.objects.filter(Q(name__icontains=q)|Q(description__icontains=q),profile=profile)
+
     context={
         "project_list":project_list,
     }
@@ -262,8 +267,10 @@ def add_blog_view(request):
 def view_blog_view(request):
    
     user=request.user
+    q = request.GET.get("q", "")
     profile= get_object_or_404(Profile, user=user)
-    blog_list = Blog.objects.filter(profile=profile)
+    blog_list = Blog.objects.filter(Q(title__icontains=q)|Q(body__icontains=q),profile=profile)
+  
     context={
         "blog_list":blog_list,
     }
@@ -324,8 +331,10 @@ def add_review_view(request):
 @login_required
 def view_review_view(request):
     user=request.user
+    q = request.GET.get("q", "")
     profile= get_object_or_404(Profile, user=user)
-    review_list = Review.objects.filter(profile=profile)
+    review_list = Review.objects.filter(Q(reviewer_name__icontains=q)|Q(reviewer_role__name__icontains=q)|Q(reviewer_organization__name__icontains=q),profile=profile)
+
     context={
         "review_list":review_list
     }

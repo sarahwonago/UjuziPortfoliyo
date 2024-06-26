@@ -2,6 +2,11 @@
 {%block content%}
 <section>
    <h2>Projects</h2>
+   <form method="get">
+    <input type="text" name="q" placeholder="search by name/description...">
+    <button type="search">Search</button></a>
+
+   </form>
    <table>
     <thead>
         <tr>
@@ -9,7 +14,6 @@
             <th>Description</th>
             <th>Created_At</th>
             <th>Updated_At</th>
-            <th>Demo Link</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -17,10 +21,9 @@
       {%for project in project_list%}
         <tr>
             <td>{{project.name}}</td>
-            <td>{{project.description|truncatewords:10}}</td>
-            <td>{{project.created_at|timesince}}</td>
-            <td>{{project.updated_at|timesince}}</td>
-            <td>{{project.demo_link}}</td>
+            <td>{{project.description|truncatewords:5}}</td>
+            <td>{{project.created_at|timesince}} ago</td>
+            <td>{{project.updated_at|timesince}} ago</td>
             <td>
                 <a href="{% url 'dashboard:project-edit' project.id %}"><button>Edit</button></a>
                 <a href="{% url 'dashboard:project-delete' project.id %}"><button>Delete</button></a>
@@ -28,15 +31,11 @@
         </tr>
       {%empty%}
       <tr>
-         <td>Populate Projects</td>
-         <td>Populate Projects</td>
-         <td>Populate Projects</td>
-         <td>Populate Projects</td>
-         <td>Populate Projects</td>
-         <td>
-             <a href=""><button>Edit</button></a>
-             <a href=""><button>Delete</button></a>
-         </td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
      </tr>
       {% endfor %}
     </tbody>

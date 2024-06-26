@@ -2,6 +2,11 @@
 {%block content%}
 <section>
    <h2>Reviews</h2>
+   <form method="get">
+    <input type="text" name="q" placeholder="search by reviewer,role, org...">
+    <button type="search">Search</button></a>
+
+   </form>
    <table>
     <thead>
         <tr>
@@ -10,7 +15,6 @@
             <th>Organization</th>
             <th>Created_At</th>
             <th>Updated_At</th>
-            <th>Review</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -20,9 +24,8 @@
             <td>{{review.reviewer_name}}</td>
             <td>{{review.reviewer_role}}</td>
             <td>{{review.reviewer_organization}}</td>
-            <td>{{review.created_at|timesince}}</td>
-            <td>{{review.updated_at|timesince}}</td>
-            <td>{{review.review|truncatewords:10}}</td>
+            <td>{{review.created_at|timesince}} ago</td>
+            <td>{{review.updated_at|timesince}} ago</td>
             <td>
                 <a href="{% url 'dashboard:review-edit' review.id %}"><button>Edit</button></a>
                 <a href="{% url 'dashboard:review-delete' review.id %}"><button>Delete</button></a>
@@ -30,16 +33,13 @@
         </tr>
       {%empty%}
       <tr>
-         <td>Populate Reviews</td>
-         <td>Populate Reviews</td>
-         <td>Populate Reviews</td>
-         <td>Populate Reviews</td>
-         <td>Populate Reviews</td>
-         <td>Populate Reviews</td>
-         <td>
-             <a href=""><button>Edit</button></a>
-             <a href=""><button>Delete</button></a>
-         </td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+   
      </tr>
       {% endfor %}
     </tbody>
