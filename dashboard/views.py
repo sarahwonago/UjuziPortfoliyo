@@ -445,3 +445,131 @@ def service_review_view(request):
     }
  
     return render(request, "dashboard/service_review.html", context)
+
+@login_required
+def add_education_view(request):
+    if request.method == 'POST':
+        form = EducationForm(request.POST)
+        if form.is_valid():
+            education=form.save(commit=False)
+            education.profile= request.user.profile
+            education.save()
+            return redirect("dashboard:education-view")
+    else:
+       form = EducationForm()     
+    context = {
+        "form":form,
+    }
+    return render(request, "dashboard/add_education.html", context)
+
+@login_required
+def view_education_view(request):
+    user=request.user
+    q = request.GET.get("q", "")
+    profile= get_object_or_404(Profile, user=user)
+    education_list = Education.objects.filter(Q(field_of_study__name__icontains=q),profile=profile)
+
+    context={
+        "education_list":education_list
+    }
+    return render(request, "dashboard/view_education.html", context)
+
+@login_required
+def edit_education_view(request, pk):
+    education = get_object_or_404(Education, id=pk)
+
+    if education.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+
+    if request.method == 'POST':
+        form = EducationForm(request.POST, instance=education)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard:education-view")
+    else:
+       form = EducationForm(instance=education)     
+    context = {
+        "form":form,
+    }
+    return render(request, "dashboard/edit_education.html", context)
+
+@login_required
+def delete_education_view(request, pk):
+    education = get_object_or_404(Education, id=pk)
+
+    if education.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+
+    if request.method == 'POST':
+        education.delete()
+        return redirect("dashboard:education-view")
+    
+    context = {
+        "education":education,
+    }
+    return render(request, "dashboard/delete_education.html", context)
+
+
+login_required
+def add_certification_view(request):
+    if request.method == 'POST':
+        form = CertificationForm(request.POST)
+        if form.is_valid():
+            certification=form.save(commit=False)
+            certification.profile= request.user.profile
+            certification.save()
+            return redirect("dashboard:certification-view")
+    else:
+       form = CertificationForm()     
+    context = {
+        "form":form,
+    }
+    return render(request, "dashboard/add_certification.html", context)
+
+@login_required
+def view_certification_view(request):
+    user=request.user
+    q = request.GET.get("q", "")
+    profile= get_object_or_404(Profile, user=user)
+    certification_list = Certification.objects.filter(Q(name__icontains=q),profile=profile)
+
+    context={
+        "certification_list":certification_list
+    }
+    return render(request, "dashboard/view_certification.html", context)
+
+@login_required
+def edit_certification_view(request, pk):
+    certification = get_object_or_404(Certification, id=pk)
+
+    if certification.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+
+    if request.method == 'POST':
+        form = CertificationForm(request.POST, instance=certification)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard:certification-view")
+    else:
+       form = CertificationForm(instance=certification)     
+    context = {
+        "form":form,
+    }
+    return render(request, "dashboard/edit_certification.html", context)
+
+@login_required
+def delete_certification_view(request, pk):
+    certification = get_object_or_404(Certification, id=pk)
+
+    if certification.profile.user != request.user:
+        return redirect('dashboard:forbidden')
+
+    if request.method == 'POST':
+        certification.delete()
+        return redirect("dashboard:certification-view")
+    
+    context = {
+        "certification":certification,
+    }
+    return render(request, "dashboard/delete_certification.html", context)
+

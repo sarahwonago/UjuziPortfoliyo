@@ -85,7 +85,7 @@
                                     {%endfor%}
                                 </ul>
                             </div>
-                            <a href="{% url 'userportfoliyo:download_cv'%}" class="btn btn-fill " data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod My CV <i class="fa fa-download"></i></a>
+                            <a target="_blank" href="{% url 'dashboard:cvpreview'%}" class="btn btn-fill " data-wow-duration="0.8s" data-wow-delay="0.4s">View My CV</a>
                             
                         </div>
                     </div>
@@ -333,7 +333,7 @@
                                         <li><strong>By</strong><a href="">{{user.username|title}}</a></li>
                                     </ul>
                                 </div>
-                                <p>{{blog.body}}</p>
+                                <p>{{blog.body|truncatewords:20}}</p>
                                 <a href="{% url 'userportfoliyo:blog_detail' blog.pk %}">Read More</a>
                             </div>
                         </div>
@@ -408,7 +408,7 @@
                             <h5>This is what people i've worked with say about me and my work...</h5>
                         </div>
                         
-                        <div class="col-sm-12 " id="mh-client-review" >
+                        <div class="col-sm-12 " >
                             {% for review in reviews %}
                             <div class="each-client-item">
                                 <div class="mh-client-item dark-bg black-shadow-1">

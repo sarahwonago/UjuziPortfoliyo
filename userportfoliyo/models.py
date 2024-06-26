@@ -111,7 +111,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
     
 class Profession(models.Model):
     class Meta:
@@ -240,8 +239,8 @@ class Education(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_education")
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
     field_of_study = models.ForeignKey(StudyField, on_delete=models.CASCADE)
-    graduation_date = models.DateTimeField()
-    grade = models.CharField(max_length=250)
+    graduation_date = models.DateField()
+    grade = models.CharField(max_length=250, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField("Summary of Education")

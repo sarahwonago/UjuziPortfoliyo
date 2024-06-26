@@ -58,3 +58,19 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model=Comment
         fields=["comment"] 
+
+class EducationForm(forms.ModelForm):
+ 
+    class Meta:
+        model=Education
+        fields=["institution","field_of_study","graduation_date", "grade","description"] 
+        widgets = {
+            "graduation_date": forms.DateInput(attrs={"type":"date","placeholder":"2024-03-04"}),
+        }
+         
+
+class CertificationForm(forms.ModelForm):
+ 
+    class Meta:
+        model=Certification
+        fields=["name","organization","description"] 
