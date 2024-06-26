@@ -1,0 +1,12 @@
+{%extends 'dashboard/base.html'%}
+{%block content%}
+<section>
+    <h2>Are you sure you want to delete: {{certification.name}}?</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Delete</button>
+        <button><a href="{% url 'dashboard:certification-view' %}">Cancel</a></button>
+    </form>
+</section>
+{% endblock content%}

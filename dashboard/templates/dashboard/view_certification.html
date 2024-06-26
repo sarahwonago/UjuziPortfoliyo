@@ -1,0 +1,45 @@
+{%extends 'dashboard/base.html'%}
+{%block content%}
+<section>
+   <h2>Certifications</h2>
+   <form method="get">
+    <input type="text" name="q" placeholder="search by name...">
+    <button type="search">Search</button></a>
+
+   </form>
+   <table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Organization</th>
+            <th>Created_At</th>
+            <th>Updated_At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+      {%for certification in certification_list%}
+        <tr>
+            <td>{{certification.name}}</td>
+            <td>{{certification.organization}}</td>
+            <td>{{certification.created_at|timesince}} ago</td>
+            <td>{{certification.updated_at|timesince}} ago</td>
+            <td>
+                <a href="{% url 'dashboard:certification-edit' certification.id %}"><button>Edit</button></a>
+                <a href="{% url 'dashboard:certification-delete' certification.id %}"><button>Delete</button></a>
+            </td>
+        </tr>
+      {%empty%}
+      <tr>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+     </tr>
+      {% endfor %}
+    </tbody>
+</table>
+  
+</section>
+{% endblock content%}

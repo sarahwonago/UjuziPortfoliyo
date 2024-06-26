@@ -1,0 +1,45 @@
+{%extends 'dashboard/base.html'%}
+{%block content%}
+<section>
+   <h2>Education</h2>
+   <form method="get">
+    <input type="text" name="q" placeholder="search by field of study,...">
+    <button type="search">Search</button></a>
+
+   </form>
+   <table>
+    <thead>
+        <tr>
+            <th>Field Of Study</th>
+            <th>Institution</th>
+            <th>Created_At</th>
+            <th>Updated_At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+      {%for education in education_list%}
+        <tr>
+            <td>{{education.field_of_study}}</td>
+            <td>{{education.institution.name}}</td>
+            <td>{{education.created_at|timesince}} ago</td>
+            <td>{{education.updated_at|timesince}} ago</td>
+            <td>
+                <a href="{% url 'dashboard:education-edit' education.id %}"><button>Edit</button></a>
+                <a href="{% url 'dashboard:education-delete' education.id %}"><button>Delete</button></a>
+            </td>
+        </tr>
+      {%empty%}
+      <tr>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+     </tr>
+      {% endfor %}
+    </tbody>
+</table>
+  
+</section>
+{% endblock content%}

@@ -1,0 +1,13 @@
+{%extends 'dashboard/base.html'%}
+{% load crispy_forms_tags%}
+{%block content%}
+<section>
+    <h2>Add Education</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Save</button>
+        <button><a href="{% url 'dashboard:education-view' %}">Cancel</a></button>
+    </form>
+</section>
+{% endblock content%}
