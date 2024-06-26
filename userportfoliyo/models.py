@@ -91,7 +91,7 @@ class Profile(models.Model):
         verbose_name = "Profile"
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    about_me = models.TextField("About",blank=True, null=True)
+    about_me = models.TextField("About",)
     user_cv =models.FileField(null=True, blank=True)
     bio = models.TextField()
     tech_stack = models.ManyToManyField(Techonology)
@@ -140,7 +140,7 @@ class WorkExperience(models.Model):
     role = models.ForeignKey(TechRole, on_delete=models.CASCADE)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     year = models.DateField()
-    location = models.CharField(max_length=250, blank=True, null=True)
+    location = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField("Description of Responsibilities")
@@ -199,6 +199,7 @@ class Comment(models.Model):
     def __str__(self):
         return self.comment_by
     
+
 class Review(models.Model):
     class Meta:
         verbose_name_plural = "Reviews"
@@ -240,7 +241,7 @@ class Education(models.Model):
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
     field_of_study = models.ForeignKey(StudyField, on_delete=models.CASCADE)
     graduation_date = models.DateField()
-    grade = models.CharField(max_length=250, null=True, blank=True)
+    grade = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField("Summary of Education")

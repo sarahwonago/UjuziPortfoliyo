@@ -15,7 +15,7 @@ def dashboard(request):
         comments=comments+comment
         comment = 0
     
-    context={
+    context={   
         "blogs":blogs,
         "comments":comments,
         "projects":projects,
