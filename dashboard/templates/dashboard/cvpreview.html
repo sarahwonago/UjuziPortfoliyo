@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Resume</title>
+    
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.resume {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e4e4e4;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #4a90e2;
+}
+
+.header p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.contact-info p {
+    margin: 2px 0;
+}
+
+section {
+    margin: 20px 0;
+}
+
+h2 {
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    color: #4a90e2;
+}
+
+.job, .school, .project {
+    margin-bottom: 20px;
+}
+
+.job h3, .school h3, .project h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.job h4, .school h4, .project h4 {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #888;
+}
+
+.job p, .school p, .project p {
+    margin: 2px 0;
+    font-size: 14px;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <header class="header">
+            <h1>{{user.first_name}} {{user.last_name}}</h1>
+            <p>Full Stack Developer</p>
+            <div class="contact-info">
+                <p>Email: johndoe@example.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>LinkedIn: linkedin.com/in/johndoe</p>
+                <p>GitHub: github.com/johndoe</p>
+            </div>
+        </header>
+        <section class="profile">
+            <h2>Profile</h2>
+            <p>Experienced Full Stack Developer with a strong background in developing scalable web applications and working with various programming languages. Passionate about learning new technologies and improving coding skills.</p>
+        </section>
+        <section class="experience">
+            <h2>Experience</h2>
+            <div class="job">
+                <h3>Senior Developer</h3>
+                <h4>ABC Tech Solutions</h4>
+                <p>June 2020 - Present</p>
+                <ul>
+                    <li>Lead a team of developers in creating and maintaining web applications.</li>
+                    <li>Implemented RESTful APIs using Node.js and Express.</li>
+                    <li>Enhanced front-end functionalities using React and Redux.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>Full Stack Developer</h3>
+                <h4>XYZ Innovations</h4>
+                <p>January 2018 - May 2020</p>
+                <ul>
+                    <li>Developed and maintained web applications using Angular and .NET Core.</li>
+                    <li>Worked closely with designers to create user-friendly interfaces.</li>
+                    <li>Optimized application performance and ensured security best practices.</li>
+                </ul>
+            </div>
+        </section>
+        <section class="education">
+            <h2>Education</h2>
+            <div class="school">
+                <h3>Bachelor of Science in Computer Science</h3>
+                <h4>University of Technology</h4>
+                <p>2014 - 2018</p>
+            </div>
+        </section>
+        <section class="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li>Programming Languages: JavaScript, Python, Java</li>
+                <li>Frameworks: React, Angular, Node.js, Express</li>
+                <li>Databases: MongoDB, MySQL, PostgreSQL</li>
+                <li>Tools: Git, Docker, Jenkins</li>
+            </ul>
+        </section>
+        <section class="projects">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Project Management Tool</h3>
+                <p>Developed a project management tool using React, Node.js, and MongoDB, which allows teams to collaborate on projects efficiently.</p>
+            </div>
+            <div class="project">
+                <h3>Online Store</h3>
+                <p>Created an e-commerce platform with Angular and .NET Core, featuring user authentication, product catalog, and secure payment gateway.</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400');
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
+    background: #f9f9f9;
+  }
+
+
+  /*---------------------------------------
+     TYPOGRAPHY              
+  -----------------------------------------*/
+
+  h1,h2,h3,h4,h5,h6 {
+    line-height: normal;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  h2 {
+    color: #353535;
+    font-size: 2em;
+  }
+
+  p {
+    color: #757575;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 24px;
+  }
+
+
+
+  /*---------------------------------------
+     GENERAL               
+  -----------------------------------------*/
+
+  html{
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: #202020;
+    text-decoration: none !important;
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  a,
+  input, button,
+  .form-control {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+
+  a:hover, a:active, a:focus {
+    color: #29ca8e;
+    outline: none;
+  }
+
+  ::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background: #202020;
+  }
+
+  section {
+    padding: 100px 0;
+  }
+
+  button{
+    background: #29ca8e;
+    border: 0;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 12px 30px;
+  }
