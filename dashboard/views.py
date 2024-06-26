@@ -6,7 +6,21 @@ from accounts.forms import UserModForm
 
 @login_required
 def dashboard(request):
-    return render(request, "dashboard/dashboard.html")
+    blogss = Blog.objects.filter(profile__user=request.user)
+    blogs = Blog.objects.filter(profile__user=request.user).count()
+    projects = Project.objects.filter(profile__user=request.user).count()
+    comments = 0
+    for blog in blogss:
+        comment=blog.blog_comment.all().count()
+        comments=comments+comment
+        comment = 0
+    
+    context={
+        "blogs":blogs,
+        "comments":comments,
+        "projects":projects,
+    }
+    return render(request, "dashboard/dashboard.html", context)
 
 @login_required
 def cvpreview_view(request):
