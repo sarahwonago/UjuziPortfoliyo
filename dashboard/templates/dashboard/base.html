@@ -4,83 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title%}{% endblock title%}| Dashboard</title>
-
+    <title>{% block title %}{% endblock title %} | Dashboard</title>
     <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
 </head>
 <body>
-
-    <nav>
-        <ul>
-            <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a>
-            </li>
-            <li><a href="">Profile Management</a>
-                <ul>
-                    <li><a href="{% url 'dashboard:profile-edit' %}">Edit profile info</a></li>
-                    <li><a href="{% url 'dashboard:personal-edit' %}">Edit personal info</a></li>
-                    <li><a href="{% url 'password_change' %}">Change Password</a></li>
-                </ul>
-            </li>
-            <li><a href="">Work Experience</a>
-                <ul>
-                    <li><a href="{% url 'dashboard:work-add' %}">Add Work Experience</a></li>
-                    <li><a href="{% url 'dashboard:work-view' %}">View Work Experience</a></li>
-                </ul>
-            </li>
-            <li><a href="">Professional Expertise</a>
-                <ul>
-                    <li><a href="{% url 'dashboard:profession-add' %}">Add Profession</a></li>
-                    <li><a href="{% url 'dashboard:profession-view' %}">View Profession</a></li>
-                </ul>
-            </li>
-            <li><a href="">Project Management</a>
-                <ul>
-                    <li><a href="{% url 'dashboard:project-add' %}">Add Project</a></li>
-                </ul>
-                <ul>
-                    <li><a href="{% url 'dashboard:project-view' %}">View Projects</a></li>
-                </ul>
-            </li>
-            <li><a href="">Blog Management</a>
-                <ul>
-                    <li><a href="{% url 'dashboard:blog-add' %}">Add Blog</a></li>
-                </ul>
-                <ul>
-                    <li><a href="{% url 'dashboard:blog-view' %}">View blogs</a></li>
-                </ul>
-            </li>
-            <li><a href="">Review Management</a>
-                <ul>
-                    <li><a href="{% url 'dashboard:review-add' %}">Add Review</a></li>
-                </ul>
-                <ul>
-                    <li><a href="{% url 'dashboard:review-view' %}">View Reviews</a></li>
-                </ul>
-            </li>
-            <li><a href="">Education</a>
-                <ul>
-                    <li><a href="{% url 'dashboard:education-add' %}">Add Education</a></li>
-                    <li><a href="{% url 'dashboard:education-view' %}">View Education</a></li>
-                </ul>
-            </li>
-            <li><a href="">Certifications</a>
-                <ul>
-                    <li><a href="{% url 'dashboard:certification-add' %}">Add Certification</a></li>
-                    <li><a href="{% url 'dashboard:certification-view' %}">View Certifications</a></li>
-                </ul>
-            </li>
-            <li><a href="">Others</a>
-                <ul>
-                    <li><a target="_blank" href="{% url 'userportfoliyo:portfolio'%}">Portfolio Preview</a></li>
-                    <li><a target="_blank" href="{% url 'dashboard:cvpreview' %}">CV Preview</a></li>
-                    <li>Share Your Portfolio Website Link: <a href="{% url 'userportfoliyo:user_portfolio' user.username %}" target="_blank">{{ request.build_absolute_uri|slice:":-1" }}{% url 'userportfoliyo:user_portfolio' user.username %}</a></li>
-                    <li><a href="{% url 'dashboard:service-review' %}">Rate our Service</a></li>
-                    <li><a href="{% url 'accounts:logout_user' %}">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    {%block content%}
-    {% endblock content%}
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Profile Management</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'dashboard:profile-edit' %}">Edit profile info</a>
+                        <a href="{% url 'dashboard:personal-edit' %}">Edit personal info</a>
+                        <a href="{% url 'password_change' %}">Change Password</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Work Experience</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'dashboard:work-add' %}">Add Work Experience</a>
+                        <a href="{% url 'dashboard:work-view' %}">View Work Experience</a>
+                    </div>
+                </li>
+                <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+                <li><a href="#">Others</a>
+                    <ul class="submenu">
+                        <li><a target="_blank" href="{% url 'userportfoliyo:portfolio' %}">Portfolio Preview</a></li>
+                        <li><a target="_blank" href="{% url 'dashboard:cvpreview' %}">CV Preview</a></li>
+                        <li>Share Your Portfolio Website Link: <a href="{% url 'userportfoliyo:user_portfolio' user.username %}" target="_blank">{{ request.build_absolute_uri|slice:":-1" }}{% url 'userportfoliyo:user_portfolio' user.username %}</a></li>
+                        <li><a href="{% url 'dashboard:service-review' %}">Rate our Service</a></li>
+                        <li><a href="{% url 'accounts:logout_user' %}">Logout</a></li>
+                        <li><a href="">Delete My Account</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Profile Management</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'dashboard:profile-edit' %}">Edit profile info</a></li>
+                        <li><a href="{% url 'dashboard:personal-edit' %}">Edit personal info</a></li>
+                        <li><a href="{% url 'password_change' %}">Change Password</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Work Experience</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'dashboard:work-add' %}">Add Work Experience</a></li>
+                        <li><a href="{% url 'dashboard:work-view' %}">View Work Experience</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Professional Expertise</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'dashboard:profession-add' %}">Add Profession</a></li>
+                        <li><a href="{% url 'dashboard:profession-view' %}">View Profession</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Project Management</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'dashboard:project-add' %}">Add Project</a></li>
+                        <li><a href="{% url 'dashboard:project-view' %}">View Projects</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Blog Management</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'dashboard:blog-add' %}">Add Blog</a></li>
+                        <li><a href="{% url 'dashboard:blog-view' %}">View Blogs</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Review Management</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'dashboard:review-add' %}">Add Review</a></li>
+                        <li><a href="{% url 'dashboard:review-view' %}">View Reviews</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Education</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'dashboard:education-add' %}">Add Education</a></li>
+                        <li><a href="{% url 'dashboard:education-view' %}">View Education</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Certifications</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'dashboard:certification-add' %}">Add Certification</a></li>
+                        <li><a href="{% url 'dashboard:certification-view' %}">View Certifications</a></li>
+                    </ul>
+                </li>
+           
+            </ul>
+        </nav>
+        <div class="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+    <script src="{% static 'dashboard/script.js' %}"></script>
 </body>
 </html>

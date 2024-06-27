@@ -1,37 +1,52 @@
-{%extends 'dashboard/base.html'%}
-{%block content%}
-<section>
-    <h1>Welcome, {{user.username}}</h1>
-    <h2>Overview</h2>
-    <div>
-        <h3>Blogs:{{blogs}}</h3>
-       
-    </div>
-    <div>
-        <h3>BlogComments:{{comments}}</h3>
-       
-    </div>
-    <div>
-        <h3>Projects:{{projects}}</h3>
-    </div>
-    <div>
-        <h3>ProjectLikes:20</h3>
-    </div>
-    <div>
-        <h3>Profile Views:20</h3>
-    </div>
-    <div>
-        <h3>CV Views:20</h3>
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<section class="dashboard-overview">
+    <h1>Welcome, {{ user.username }}</h1>
+    <div class="overview-cards">
+        <div class="card dashboard-item">
+            <h3>Blogs</h3>
+            <p>{{ blogs }}</p>
+        </div>
+        <div class="card dashboard-item">
+            <h3>Blog Comments</h3>
+            <p>{{ comments }}</p>
+        </div>
+        <div class="card dashboard-item">
+            <h3>Projects</h3>
+            <p>{{ projects }}</p>
+        </div>
+        <div class="card dashboard-item">
+            <h3>Profile Views</h3>
+            <p>{{user_stat.profile_views}}</p>
+            <button>hi</button>
+        </div>
+        <div class="card dashboard-item">
+            <h3>CV Views</h3>
+            <p>{{user_stat.cv_views}}</p>
+        </div>
+        <div class="card dashboard-item">
+            <h3>CV Downloads</h3>
+            <p>Implement</p>
+        </div>
     </div>
 </section>
-<section>
-    <div>
+<section class="latest-updates">
+    <div class="latest-section">
         <h2>Latest Tech Jobs</h2>
+        <ul class="job-list">
+            <li><a href="#">Frontend Developer at XYZ</a></li>
+            <li><a href="#">Backend Developer at ABC</a></li>
+            <li><a href="#">Full Stack Developer at 123</a></li>
+        </ul>
     </div>
-</section>
-<section>
-    <div>
+    <div class="latest-section">
         <h2>Latest Tech News</h2>
+        <ul class="news-list">
+            <li><a href="#">Tech Giant XYZ releases new product</a></li>
+            <li><a href="#">Innovations in AI: 2024 Trends</a></li>
+            <li><a href="#">How blockchain is changing finance</a></li>
+        </ul>
     </div>
 </section>
-{% endblock content%}
+{% endblock content %}
+

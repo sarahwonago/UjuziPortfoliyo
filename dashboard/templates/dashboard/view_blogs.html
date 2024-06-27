@@ -1,45 +1,39 @@
-{%extends 'dashboard/base.html'%}
-{%block content%}
-<section>
-   <h2>Blogs</h2>
-   <form method="get">
-    <input type="text" name="q" placeholder="search by title, description...">
-    <button type="search">Search</button></a>
-
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<section class="mt-20">
+   <h2 class="text-center">Blogs</h2>
+   <form method="get" class="mt-20 mb-20">
+       <input type="text" name="q" placeholder="Search by title, description...">
+       <button type="submit">Search</button>
    </form>
    <table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created_At</th>
-            <th>Updated_At</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-      {%for blog in blog_list%}
-        <tr>
-            <td>{{blog.title}}</td>
-            <td>{{blog.body|truncatewords:5}}</td>
-            <td>{{blog.created_at|timesince}} ago</td>
-            <td>{{blog.updated_at|timesince}} ago</td>
-            <td>
-                <a href="{% url 'dashboard:blog-edit' blog.id %}"><button>Edit</button></a>
-                <a href="{% url 'dashboard:blog-delete' blog.id %}"><button>Delete</button></a>
-            </td>
-        </tr>
-      {%empty%}
-      <tr>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
-     </tr>
-      {% endfor %}
-    </tbody>
-</table>
-  
+       <thead>
+           <tr>
+               <th>Title</th>
+               <th>Description</th>
+               <th>Created At</th>
+               <th>Updated At</th>
+               <th>Actions</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for blog in blog_list %}
+           <tr>
+               <td>{{ blog.title }}</td>
+               <td>{{ blog.body|truncatewords:5 }}</td>
+               <td>{{ blog.created_at|timesince }} ago</td>
+               <td>{{ blog.updated_at|timesince }} ago</td>
+               <td>
+                   <a href="{% url 'dashboard:blog-edit' blog.id %}"><button>Edit</button></a>
+                   <a href="{% url 'dashboard:blog-delete' blog.id %}"><button>Delete</button></a>
+               </td>
+           </tr>
+           {% empty %}
+           <tr>
+               <td colspan="5">No blogs found.</td>
+           </tr>
+           {% endfor %}
+       </tbody>
+   </table>
 </section>
-{% endblock content%}
+{% endblock content %}

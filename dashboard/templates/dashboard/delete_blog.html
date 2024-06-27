@@ -1,12 +1,12 @@
-{%extends 'dashboard/base.html'%}
-{%block content%}
-<section>
-    <h2>Are you sure you want to delete the Blog: {{blog.title}}?</h2>
-    <form action="" method="post">
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<section class="mt-20">
+    <h2 class="text-center">Are you sure you want to delete the Blog: {{ blog.title }}?</h2>
+    <form action="" method="post" class="text-center mt-20">
         {% csrf_token %}
-        {{form.as_p}}
+        {{ form.as_p }}
         <button type="submit">Delete</button>
         <button><a href="{% url 'dashboard:blog-view' %}">Cancel</a></button>
     </form>
 </section>
-{% endblock content%}
+{% endblock content %}

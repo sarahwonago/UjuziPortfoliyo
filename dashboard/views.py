@@ -3,12 +3,17 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from userportfoliyo.forms import *
 from accounts.forms import UserModForm
+from userportfoliyo.models import UserProfileStatistic, Profile
 
 @login_required
 def dashboard(request):
-    blogss = Blog.objects.filter(profile__user=request.user)
-    blogs = Blog.objects.filter(profile__user=request.user).count()
-    projects = Project.objects.filter(profile__user=request.user).count()
+    user = request.user
+    profile = get_object_or_404(Profile, user=user)
+    user_stat, created = UserProfileStatistic.objects.get_or_create(profile=profile)
+
+    blogss = Blog.objects.filter(profile__user=user)
+    blogs = Blog.objects.filter(profile__user=user).count()
+    projects = Project.objects.filter(profile__user=user).count()
     comments = 0
     for blog in blogss:
         comment=blog.blog_comment.all().count()
@@ -19,6 +24,7 @@ def dashboard(request):
         "blogs":blogs,
         "comments":comments,
         "projects":projects,
+        "user_stat": user_stat,
     }
     return render(request, "dashboard/dashboard.html", context)
 
@@ -29,6 +35,11 @@ def cvpreview_view(request):
 
 def public_cvpreview_view(request, username):
     user=get_object_or_404(User, username=username)
+    profile = get_object_or_404(Profile, user=user)
+    user_stat, created = UserProfileStatistic.objects.get_or_create(profile=profile)
+    user_stat.cv_views += 1
+    user_stat.save()
+
     context={
         "user":user,
     }
