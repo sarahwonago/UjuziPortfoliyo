@@ -27,7 +27,7 @@ class ProfessionForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ["name","description", "image", "technology_used","demo_link"]
+        fields = ["name","description", "image", "technology_used","github_repo_link","demo_link"]
 
 
 class BlogForm(forms.ModelForm):

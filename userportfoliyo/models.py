@@ -162,6 +162,7 @@ class Project(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    github_repo_link = models.URLField(null=True, blank=True)
     demo_link = models.URLField(null=True, blank=True)
 
     def __str__(self):
@@ -264,3 +265,12 @@ class Certification(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class UserProfileStatistic(models.Model):
+    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
+    profile_views = models.PositiveIntegerField(default=0)
+    cv_views = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.profile.user.username}'s Statistics"

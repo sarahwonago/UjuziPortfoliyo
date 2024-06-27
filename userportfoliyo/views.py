@@ -10,7 +10,14 @@ from .models import *
 
 def public_user_portfolio(request, username):
     user = get_object_or_404(User, username=username)
+    
     profile = get_object_or_404(Profile, user=user)
+    
+    if request.user != user:
+        user_stat, created = UserProfileStatistic.objects.get_or_create(profile=profile)
+        user_stat.profile_views += 1
+        user_stat.save()
+    
     profession = Profession.objects.filter(profile=profile)
     projects = Project.objects.filter(profile=profile)
     blogs = Blog.objects.filter(profile=profile)
