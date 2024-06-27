@@ -50,4 +50,4 @@ This is a web application that allows users to create a professional portfolio w
 - SMTP server for email notifications
 
 ### Setup
-1. Clone the repository:
+1. 
