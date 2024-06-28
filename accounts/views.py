@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegisterForm
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 def logout_view(request):
     logout(request)
@@ -27,3 +29,17 @@ def register_view(request):
         "form":form,
     }
     return render(request, "accounts/user_registration.html", context)
+
+@login_required
+def delete_account_view(request, username):
+
+    if request.user.username != username:
+        return redirect("dashboard:forbidden")
+    
+    user = request.user
+
+    if request.method == 'POST':
+        user.delete()
+        return redirect("/")
+    
+    return render(request, "accounts/delete_account.html")

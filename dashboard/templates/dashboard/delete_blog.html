@@ -4,7 +4,6 @@
     <h2 class="text-center">Are you sure you want to delete the Blog: {{ blog.title }}?</h2>
     <form action="" method="post" class="text-center mt-20">
         {% csrf_token %}
-        {{ form.as_p }}
         <button type="submit">Delete</button>
         <button><a href="{% url 'dashboard:blog-view' %}">Cancel</a></button>
     </form>
