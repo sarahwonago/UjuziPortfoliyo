@@ -80,8 +80,6 @@
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">OTHERS</a>
                     <div class="dropdown-content">
-                        
-                        <a target="_blank" href="{% url 'dashboard:cvpreview' %}">CV Preview</a>
                        <a href="{% url 'userportfoliyo:user_portfolio' user.username %}" target="_blank">Share Portfolio Link</a>
                         <a href="{% url 'accounts:delete_account' user.username %}">Delete Account</a>
                     </div>
@@ -91,7 +89,7 @@
         </nav>
         <div class="content">
             <section>
-                <h4 class="text-center"><a href="{% url 'dashboard:dashboard' %}"> OVERVIEW </a> |<a target="_blank" href="{% url 'userportfoliyo:portfolio' %}"> PORTFOLIO PREVIEW </a> | <a href="{% url 'accounts:logout_user' %}">LOGOUT</a></h4>
+                <h4 class="text-center"><a href="{% url 'dashboard:dashboard' %}"> OVERVIEW </a> | <a target="_blank" href="{% url 'userportfoliyo:portfolio' %}"> PORTFOLIO PREVIEW </a> | <a target="_blank" href="{% url 'dashboard:cvpreview' %}"> CV PREVIEW </a>| <a href="{% url 'accounts:logout_user' %}"> LOGOUT </a></h4>
             </section>
             
             {% block content %}
