@@ -1,0 +1,12 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<section class="mt-20">
+    <h2 class="text-center">Are you sure you want to delete your account?</h2>
+    <p>It is sad to se you go. </p>
+    <form action="" method="post" class="text-center mt-20">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+        <button><a href="{% url 'dashboard:dashboard' %}">Cancel</a></button>
+    </form>
+</section>
+{% endblock content %}
