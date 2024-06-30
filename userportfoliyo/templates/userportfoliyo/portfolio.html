@@ -19,11 +19,17 @@
                                 </div>
                                 <h2>{% if user.first_name%}{{user.first_name | title}} {% else %} F_Name{% endif %} {% if user.last_name%}{{user.last_name | title}} {% else %} L_Name {% endif %}</h2>
                                 {% for my_profession in profession%}
-                                <h4 class="" >{{my_profession.name}}</h4>
+                                <style>
+                                    .prof{
+                                        font-size: 1.5em;
+                                        font-weight: bold;
+                                    }
+                                </style>
+                                <span class="prof">{{my_profession.name}} |</span>
                                 {%empty%}
                                 <h4 class="" >Populate profession</h4>
                                 {%endfor%}
-                                <p class="" >{% if profile.bio %}{{profile.bio}}{%else%} Populate bio {%endif%}</p>
+                                <p style="margin-top: 10px;">{% if profile.bio %}{{profile.bio}}{%else%} Populate bio {%endif%}</p>
                                 
                                 <ul>
                                     <li class="" data-wow-duration="0.8s" data-wow-delay="0.4s"><i class="fa fa-envelope"></i><a href="mailto:">{% if user.email%}{{user.email}}{% else%} add email {% endif %}</a></li>

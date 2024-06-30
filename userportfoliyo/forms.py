@@ -62,7 +62,7 @@ class WorkExperienceForm(forms.ModelForm):
         fields = ["role","organization","year","description" ]
         widgets = {
             "year": forms.DateInput(attrs={"type":"date","placeholder":"2024-03-04", "max":datetime.now().date()}),
-            "role": forms.RadioSelect(),
+            "role": forms.Select(),
         }
 
 class ProfessionForm(forms.ModelForm):
@@ -75,6 +75,9 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ["name","description", "image", "technology_used","github_repo_link","demo_link"]
+        widgets= {
+            "technology_used":forms.CheckboxSelectMultiple(),
+        }
 
 
 class BlogForm(forms.ModelForm):
