@@ -92,7 +92,7 @@ class Profile(models.Model):
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     about_me = models.TextField("About",)
-    user_cv =models.FileField(null=True, blank=True)
+    user_cv =models.FileField(upload_to='cv_uploads/', null=True, blank=True)
     bio = models.TextField()
     tech_stack = models.ManyToManyField(Techonology)
     soft_skills = models.ManyToManyField(SoftSkills)
@@ -271,6 +271,7 @@ class UserProfileStatistic(models.Model):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
     profile_views = models.PositiveIntegerField(default=0)
     cv_views = models.PositiveIntegerField(default=0)
+    cv_downloads = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"{self.profile.user.username}'s Statistics"

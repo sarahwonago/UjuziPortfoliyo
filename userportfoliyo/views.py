@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.core.mail import send_mail, BadHeaderError
 from xhtml2pdf import pisa
+from weasyprint import HTML
 
 from .models import *
 
@@ -116,43 +117,47 @@ def blog_detail_view(request, pk):
     }
     return render(request, "userportfoliyo/blog_detail.html", context)
 
-
 def public_generate_pdf(request, username):
     user = get_object_or_404(User, username=username)
-    user_profile = Profile.objects.get(user=user)
-    profession = Profession.objects.filter(profile=user_profile).first()
+
+    profile = get_object_or_404(Profile, user=user)
+    
+    if request.user != user:
+        user_stat, created = UserProfileStatistic.objects.get_or_create(profile=profile)
+        user_stat.cv_downloads += 1
+        user_stat.save()
   
-    template_path = 'userportfoliyo/pdf_template.html'
+    template= get_template('userportfoliyo/pdf_template.html')
     context = {
-        "profile": user_profile,
-        "profession":profession,
+        "user":user,
     }
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="resume.pdf"'
-    template = get_template(template_path)
-    html = template.render(context)
-    pisa_status = pisa.CreatePDF(html, dest=response)
-    if pisa_status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+
+    html_content = template.render(context)
+
+    pdf_file = HTML(string=html_content).write_pdf()
+
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="{user.username}_profile.pdf"'
+    
     return response
+
 
 @login_required
 def generate_pdf(request):
-    user_profile = get_object_or_404(Profile, user=request.user)
-    profession = Profession.objects.filter(profile=user_profile).first()
+    user = request.user
   
-    template_path = 'userportfoliyo/pdf_template.html'
+    template= get_template('userportfoliyo/pdf_template.html')
+
     context = {
-        "profile": user_profile,
-        "profession":profession,
+        "user":user,
     }
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="resume.pdf"'
-    template = get_template(template_path)
-    html = template.render(context)
-    pisa_status = pisa.CreatePDF(html, dest=response)
-    if pisa_status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    html_content = template.render(context)
+
+    pdf_file = HTML(string=html_content).write_pdf()
+
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="{request.user.username}_profile.pdf"'
+    
     return response
 
 

@@ -14,3 +14,4 @@ urlpatterns = [
     path("public/project-detail/<int:pk>/<str:username>/", public_project_detail_view, name="public_project_detail"),
     path("", portfolio_view, name="portfolio"),
 ]
+
