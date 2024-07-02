@@ -1,7 +1,38 @@
 {% extends 'dashboard/base.html' %}
 {% block content %}
+<style>
+    .share-container {
+        display: flex;
+        align-items: center;
+        margin: 20px;
+    }
+    .share-input {
+        margin-right: 10px;
+        padding: 5px;
+        width: 300px;
+    }
+    .copy-button {
+        padding: 5px 10px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 3px;
+    }
+    .message {
+        margin-left: 10px;
+        color: green;
+    }
+</style>
+
 <section class="dashboard-overview">
     <h1>Welcome, {{ user.username }}</h1>
+    <h4>Share your portfolio website with others:</h4>
+    <div class="share-container">
+        <input type="text" id="shareLink" class="share-input" value="{{ request.build_absolute_uri|slice:":-1" }}{% url 'userportfoliyo:user_portfolio' user.username %}" readonly>
+        <button class="copy-button" onclick="copyLink()">Click to Copy Link</button>
+        <span id="message" class="message"></span>
+    </div>
     <div class="overview-cards">
         <div class="card dashboard-item">
             <h3>Blogs</h3>
@@ -47,5 +78,17 @@
         </ul>
     </div>
 </section>
+<script>
+    function copyLink() {
+        const copyText = document.getElementById("shareLink").value;
+        navigator.clipboard.writeText(copyText).then(() => {
+            const message = document.getElementById("message");
+            message.textContent = "Link copied to clipboard!";
+        }).catch(err => {
+            const message = document.getElementById("message");
+            message.textContent = "Failed to copy the link.";
+        });
+    }
+</script>
 {% endblock content %}
 

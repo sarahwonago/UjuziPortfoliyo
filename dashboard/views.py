@@ -4,8 +4,6 @@ from django.db.models import Q
 from userportfoliyo.forms import *
 from accounts.forms import UserModForm
 from userportfoliyo.models import UserProfileStatistic, Profile
-# from pyresparser import ResumeParser
-# import os
 
 @login_required
 def dashboard(request):
@@ -60,20 +58,6 @@ def profile_view(request):
         if form.is_valid():
             profile = form.save()
             form.save_m2m()
-            
-            # # Parse the uploaded CV
-            # resume_path = profile.user_cv.path
-            # data = ResumeParser(resume_path).get_extracted_data()
-
-            # # Update the user's profile with extracted data
-            # if data:
-            #     user.username = data.get('name', user.username)
-            #     user.email = data.get('email', user.email)
-            #     user.save()
-
-            #     profile.about_me = data.get('summary', profile.about_me)
-            #     profile.bio = data.get('bio', profile.bio)
-            #     profile.save()
 
             return redirect("dashboard:profile-edit")
     else:
