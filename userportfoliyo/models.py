@@ -2,9 +2,27 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from PIL import Image as PilImage
+from django.core.exceptions import ValidationError
 
 
-User =get_user_model()
+User=get_user_model()
+
+def validate_image(image):
+    max_height = 1080  # example value
+    max_width = 1920  # example value
+    max_size = 2 * 1024 * 1024  # 2 MB
+
+    # Check file size
+    if image.size > max_size:
+        raise ValidationError(f"Image file size should not exceed {max_size / (1024 * 1024)} MB.")
+
+    # Check image dimensions
+    img = PilImage.open(image)
+    width, height = img.size
+    if width > max_width or height > max_height:
+        raise ValidationError(f"Image dimensions should not exceed {max_width}x{max_height} pixels.")
+
 
 class Techonology(models.Model):
     class Meta:
@@ -157,7 +175,7 @@ class Project(models.Model):
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_project")
     name = models.CharField(max_length=250)
-    image = models.ImageField(upload_to="project/")
+    image = models.ImageField(upload_to="project/", validators=[validate_image])
     technology_used = models.ManyToManyField(Techonology)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -177,7 +195,7 @@ class Blog(models.Model):
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_blog")
     title = models.CharField(max_length=250)
-    image = models.ImageField(upload_to="blog/")
+    image = models.ImageField(upload_to="blog/", validators=[validate_image])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     body = models.TextField()
