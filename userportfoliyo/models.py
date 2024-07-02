@@ -110,7 +110,6 @@ class Profile(models.Model):
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     about_me = models.TextField("About",)
-    user_cv =models.FileField(upload_to='cv_uploads/', null=True, blank=True)
     bio = models.TextField()
     tech_stack = models.ManyToManyField(Techonology)
     soft_skills = models.ManyToManyField(SoftSkills)
