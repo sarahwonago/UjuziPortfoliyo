@@ -5,7 +5,7 @@ from .models import *
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["bio","about_me","tech_stack","soft_skills","user_cv"]
+        fields = ["bio","about_me","tech_stack","soft_skills"]
         widgets = {
             "bio":forms.Textarea(attrs={"minlength":100, "maxlength":250}),
             # 'title': forms.TextInput(attrs={'minlength': 5, 'maxlength': 100, 'required': True}),
