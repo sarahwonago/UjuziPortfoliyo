@@ -151,7 +151,7 @@ class WorkExperience(models.Model):
     class Meta:
         verbose_name_plural = "WorkExperience"
         verbose_name = "WorkExperience"
-        ordering = ("-created_at",)
+        ordering = ("-year",)
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_workexperience")
     role = models.ForeignKey(TechRole, on_delete=models.CASCADE)

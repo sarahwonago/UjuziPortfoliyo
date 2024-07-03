@@ -74,7 +74,7 @@ def personal_edit_view(request):
         form = UserModForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect("dashboard:dashboard")
+            return redirect("dashboard:personal-edit")
     else:
         form = UserModForm(instance=request.user)
 

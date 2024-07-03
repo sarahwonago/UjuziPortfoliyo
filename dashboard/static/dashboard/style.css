@@ -31,10 +31,6 @@ body {
     font-size: 2em;
   }
 
-  p {
-    font-weight: normal;
-    line-height: 24px;
-  }
 
 
 
@@ -44,12 +40,11 @@ body {
 
   a {
     text-decoration: none;
-    font-size: 16px;
     cursor: pointer;
     padding: 10px;
     background-color: transparent;
     color: #000;
-    opacity: 0.9; 
+    
   }
 
 
@@ -66,8 +61,8 @@ body {
 .sidebar {
   height: 100vh;
   width: 300px;
-  background-color: #f9f9f9;
-  padding-top: 20px;
+  background-color: #fff;
+  padding-top: 10px;
   position: fixed;
   overflow-y: auto;
   color: #000;
@@ -81,7 +76,7 @@ body {
 
 .sidebar ul li {
   text-align: left;
-  padding: 11px;
+  padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid #d2d4d6;
 }
@@ -105,13 +100,14 @@ body {
   border: none;
   outline: none;
   padding: 10px 15px;
-  font-size: 18px;
+  font-size: 17px;
   text-align: left;
   width: 100%;
-  font-weight: medium;
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  opacity: 0.9;
 }
 
 .dropdown-content {
@@ -163,7 +159,7 @@ body {
 }
 
 .card {
-    flex: 1 1 calc(33.333% - 10px);
+    flex: 1 1 calc(22.333% - 10px);
     background-color: #0bceaf;
     color: white;
     padding: 20px;
@@ -248,7 +244,7 @@ table th, table td {
 }
 
 table th {
-    background-color: #47617a;
+    background-color: #212b35;
     color: white;
 }
 
@@ -257,7 +253,7 @@ table tr:hover {
 }
 
 table tr:nth-child(even) {
-    background-color: #d4cdcd;
+    background-color: #f0e9e9;
 }
 
 table th:first-child, table td:first-child {
@@ -298,11 +294,6 @@ button a:hover {
     text-decoration: underline;
 }
 
-/* Header Styles */
-h1, h2, h3, h4, h5, h6 {
-    color: #000;
-    margin: 10px 0;
-}
 
 /* Utility Classes */
 .text-center {
@@ -326,19 +317,33 @@ form {
     flex-direction: column;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #f5f0f0;
    
+}
+
+form p{
+  font-weight: medium;
+  font-size: 1em;
 }
 
 form input[type="text"],
 form input[type="password"],
 form input[type="email"],
-form textarea {
-    width: 80%;
+form input[type="url"]
+{
+    width: 50%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form textarea {
+    width: 70%;
+    padding: 10px;
+    margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -346,7 +351,7 @@ form textarea {
 form button {
     width: 50%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 5px 0;
     border: none;
     border-radius: 5px;
     color: white;
@@ -355,7 +360,7 @@ form button {
 }
 
 form button:hover {
-    background-color:#0bceaf; 
+    background-color:#1aeecb; 
 }
 
 form button a {

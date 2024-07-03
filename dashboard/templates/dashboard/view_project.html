@@ -21,7 +21,7 @@
       {%for project in project_list%}
         <tr>
             <td>{{project.name}}</td>
-            <td>{{project.description|truncatewords:5}}</td>
+            <td>{{project.description|truncatewords:2}}</td>
             <td>{{project.created_at|timesince}} ago</td>
             <td>{{project.updated_at|timesince}} ago</td>
             <td>
@@ -31,11 +31,7 @@
         </tr>
       {%empty%}
       <tr>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
+        <td colspan="5">No Projects found.</td>
      </tr>
       {% endfor %}
     </tbody>

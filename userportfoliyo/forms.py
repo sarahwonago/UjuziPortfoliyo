@@ -7,10 +7,8 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ["bio","about_me","tech_stack","soft_skills"]
         widgets = {
-            "bio":forms.Textarea(attrs={"minlength":100, "maxlength":250}),
-            # 'title': forms.TextInput(attrs={'minlength': 5, 'maxlength': 100, 'required': True}),
-            # 'body': forms.Textarea(attrs={'required': True}),
-            # 'image': forms.FileInput(attrs={'required': True}),
+            "bio":forms.Textarea(attrs={"minlength":250, "maxlength":300}),
+            "about_me":forms.Textarea(attrs={"minlength":500, "maxlength":700}),
             "tech_stack": forms.CheckboxSelectMultiple(),
             "soft_skills": forms.CheckboxSelectMultiple(),
         }
@@ -59,16 +57,20 @@ class ProfileForm(forms.ModelForm):
 class WorkExperienceForm(forms.ModelForm):
     class Meta:
         model = WorkExperience
-        fields = ["role","organization","year","description" ]
+        fields = ["role","organization","year","location","description" ]
         widgets = {
             "year": forms.DateInput(attrs={"type":"date","placeholder":"2024-03-04", "max":datetime.now().date()}),
             "role": forms.Select(),
+            "description":forms.Textarea(attrs={"minlength":500, "maxlength":500}),
         }
 
 class ProfessionForm(forms.ModelForm):
     class Meta:
         model = Profession
         fields = ["name","description"]
+        widgets = {
+            "description":forms.Textarea(attrs={"minlength":150, "maxlength":150}),
+        }
 
 
 class ProjectForm(forms.ModelForm):
@@ -90,6 +92,9 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ["reviewer_name","reviewer_role", "reviewer_organization","review"]
+        widgets = {
+            "review":forms.Textarea(attrs={"minlength":100, "maxlength":300}),
+        }
      
 class TechnologyForm(forms.ModelForm):
  

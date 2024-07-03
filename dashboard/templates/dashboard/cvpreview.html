@@ -7,85 +7,85 @@
     <title>Developer Resume</title>
     
     <style>
-       body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-}
-
-.resume {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-.header {
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #e4e4e4;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 36px;
-    color: #4a90e2;
-}
-
-.header p {
-    margin: 5px 0;
-    font-size: 18px;
-}
-
-.contact-info p {
-    margin: 2px 0;
-}
-
-section {
-    margin: 20px 0;
-}
-
-h2 {
-    border-bottom: 2px solid #4a90e2;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    color: #4a90e2;
-}
-
-.job, .school, .project {
-    margin-bottom: 20px;
-}
-
-.job h3, .school h3, .project h3 {
-    margin: 0;
-    font-size: 20px;
-}
-
-.job h4, .school h4, .project h4 {
-    margin: 5px 0;
-    font-size: 16px;
-    color: #888;
-}
-
-.job p, .school p, .project p {
-    margin: 2px 0;
-    font-size: 14px;
-}
-
-ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-li {
-    margin-bottom: 5px;
-}
-
-    </style>
+        body {
+     font-family: Arial, sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: #f4f4f9;
+     color: #333;
+ }
+ 
+ .resume {
+     max-width: 800px;
+     margin: 50px auto;
+     padding: 20px;
+     background: white;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     border-radius: 8px;
+ }
+ 
+ .header {
+     text-align: center;
+     padding-bottom: 20px;
+     border-bottom: 2px solid #e4e4e4;
+ }
+ 
+ .header h1 {
+     margin: 0;
+     font-size: 36px;
+     color: #4a90e2;
+ }
+ 
+ .header p {
+     margin: 5px 0;
+     font-size: 18px;
+ }
+ 
+ .contact-info p {
+     margin: 2px 0;
+ }
+ 
+ section {
+     margin: 20px 0;
+ }
+ 
+ h2 {
+     border-bottom: 2px solid #4a90e2;
+     padding-bottom: 5px;
+     margin-bottom: 10px;
+     color: #4a90e2;
+ }
+ 
+ .job, .school, .project {
+     margin-bottom: 20px;
+ }
+ 
+ .job h3, .school h3, .project h3 {
+     margin: 0;
+     font-size: 20px;
+ }
+ 
+ .job h4, .school h4, .project h4 {
+     margin: 5px 0;
+     font-size: 16px;
+     color: #888;
+ }
+ 
+ .job p, .school p, .project p {
+     margin: 2px 0;
+     font-size: 14px;
+ }
+ 
+ ul {
+     list-style-type: disc;
+     padding-left: 20px;
+ }
+ 
+ li {
+     margin-bottom: 5px;
+ }
+ 
+     </style>
 </head>
 <body>
 
@@ -168,7 +168,7 @@ li {
                 <h3>{{project.name}}</h3>
                 <p>{{project.description}}</p>
                 <h5>Technology used:   {% for tech in project.technology_used.all%}
-                    <span> {{tech.name}} </span>
+                    <span> {{tech.name}}, </span>
                     {%endfor%}</h5>
               
             </div>

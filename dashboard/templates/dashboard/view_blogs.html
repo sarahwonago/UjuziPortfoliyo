@@ -10,7 +10,6 @@
        <thead>
            <tr>
                <th>Title</th>
-               <th>Description</th>
                <th>Created At</th>
                <th>Updated At</th>
                <th>Actions</th>
@@ -20,7 +19,6 @@
            {% for blog in blog_list %}
            <tr>
                <td>{{ blog.title }}</td>
-               <td>{{ blog.body|truncatewords:5 }}</td>
                <td>{{ blog.created_at|timesince }} ago</td>
                <td>{{ blog.updated_at|timesince }} ago</td>
                <td>
@@ -30,7 +28,7 @@
            </tr>
            {% empty %}
            <tr>
-               <td colspan="5">No blogs found.</td>
+               <td colspan="4">No blogs found.</td>
            </tr>
            {% endfor %}
        </tbody>

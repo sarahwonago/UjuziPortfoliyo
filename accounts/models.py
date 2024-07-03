@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    profilephoto = models.ImageField("ProfilePicture",upload_to="profilephoto/", default="profilephoto/profile.png")
+    profilephoto = models.ImageField("ProfilePicture",upload_to="profilephoto/", default="profilephoto/profilee.png")
     phone_number = models.CharField("Phone Number",max_length=250, null=True, blank=True)
     country = models.CharField("Country/City",max_length=250, null=True, blank=True)
     fb_link = models.URLField(null=True, blank=True)
