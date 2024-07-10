@@ -7,19 +7,13 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [Models](#models)
-- [Views and Templates](#views-and-templates)
-- [Forms](#forms)
-- [Authentication and Authorization](#authentication-and-authorization)
-- [Messages and Notifications](#messages-and-notifications)
-- [Email Configuration](#email-configuration)
-- [Environment Variables](#environment-variables)
-- [Deployment](#deployment)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Introduction
 This is a web application that allows users to create a professional portfolio with a profile page, blog page, project page, and more. Users can manage their portfolios through a user dashboard and share their portfolio links with others. The application is built with Django and provides a seamless experience for both users and visitors.
+
+[Deployed Site](https://your-deployed-site-link.com) | [Final Project Blog Article](https://your-blog-link.com) | [Author's LinkedIn](https://www.linkedin.com/in/your-linkedin-profile/)
 
 ## Features
 - User Registration and Authentication
@@ -43,11 +37,63 @@ This is a web application that allows users to create a professional portfolio w
 - **Containers**: - Docker
 
 ## Installation
+1. Clone the repository
+
+   ```bash
+   git clone https://github.com/sarahwonago/UjuziPortfoliyo
+   cd ujuziportfoliyoproject
+2. Create and activate a virtual environment
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+3. Install dependencies
+
+   ```bash
+    pip install -r requirements.txt
+
+4. Set up the database
+
+   ```bash
+    python manage.py migrate
+   
+5. Create the superuser and run the development server
+
+   ```bash
+    python manage.py createsuperuser
+    python manage.py runserver
+
+   
 ### Prerequisites
 - Python 3.x
-- PostgreSQL
+- Django 5.x
+- PostgreSQL or SQLite
 - Docker
 - SMTP server for email notifications
 
-### Setup
-1. 
+## Usage
+
+- Open your browser and go to http://127.0.0.1:8000/.
+- Register a new user account or log in if you already have one.
+- Explore the dashboard to add and manage your blogs, projects, skills, and technologies.
+- Share your portfolio link with others.
+
+## Contributing
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+### Fork the Project
+- Create your Feature Branch (git checkout -b feature/AmazingFeature)
+- Commit your Changes (git commit -m 'Add some AmazingFeature')
+- Push to the Branch (git push origin feature/AmazingFeature)
+- Open a Pull Request
+  
+## Related Projects
+Here are a few related projects you might find interesting:
+
+  -DevShowcase
+
+## Licensing
+Distributed under the MIT License. See LICENSE for more information.
+
+
