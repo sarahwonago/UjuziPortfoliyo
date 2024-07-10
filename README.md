@@ -6,9 +6,9 @@
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Project Structure](#project-structure)
+- [Related Projects](#related-projects)
 - [Contributing](#contributing)
-- [License](#license)
+- [License](#licensing)
 
 ## Introduction
 This is a web application that allows users to create a professional portfolio with a profile page, blog page, project page, and more. Users can manage their portfolios through a user dashboard and share their portfolio links with others. The application is built with Django and provides a seamless experience for both users and visitors.
